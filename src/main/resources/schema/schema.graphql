@@ -1,0 +1,80 @@
+type Query {
+    food(name: Name!): Food
+}
+
+scalar Date
+scalar Name
+
+interface Edible {
+    flavors: [Flavor!]!
+}
+
+interface Colorable {
+    colour: Colour!
+}
+
+type Food implements Edible {
+    id: ID!
+    name: Name!
+    flavors: [Flavor!]!
+}
+
+type Wine implements Edible & Colorable {
+    id: ID!
+    name: Name!
+    colour: Colour!
+    flavors: [Flavor!]!
+    varieties: [Variety!]
+    vintage: Date
+    rating: Rating
+    producers: [Producer]
+    regions: [Region]
+}
+
+type Producer {
+    id: ID!
+    name: Name!
+}
+
+type Region {
+    id: ID!
+    name: Name!
+    address: String!
+    country: String!
+    state: String!
+    city: String!
+    neighborhood: String
+    zipcode: String
+}
+
+type Variety {
+    id: ID!
+    name: Name!
+    colour: Colour!
+    flavors: [Flavor!]!
+}
+
+enum Colour {
+    RED
+    RUBY
+    GREEN
+    WHITE
+}
+
+type Flavor {
+    name: String
+}
+
+type Rating {
+    id: ID!
+    type: RatingType!
+    rating: Float!
+    minimum: Float!
+    maximum: Float!
+    fiveStar(type: RatingType = FIVE_STAR, minimum: Float = 1.0, maximum: Float = 5.0, rating: Float): Rating
+}
+
+enum RatingType {
+    FIVE_START
+    TWENTY_POINTS
+}
