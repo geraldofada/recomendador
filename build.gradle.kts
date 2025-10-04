@@ -28,6 +28,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter")
+    implementation("com.netflix.graphql.dgs:graphql-dgs-extended-scalars")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
@@ -58,6 +59,9 @@ kotlin {
 tasks.generateJava {
 	packageName = "br.uff.ic.recomendador.main.codegen"
 	generateClient = true
+    typeMapping = mutableMapOf(
+        "Name" to "br.uff.ic.recomendador.domain.models.Name",
+    )
 }
 
 tasks.withType<Test> {

@@ -1,9 +1,10 @@
+scalar Name
+scalar Date @specifiedBy(url: "https://tools.ietf.org/html/rfc3339")
+
 type Query {
     food(name: Name!): Food
+    wine(name: Name!): Wine
 }
-
-scalar Date
-scalar Name
 
 interface Edible {
     flavors: [Flavor!]!
@@ -62,7 +63,7 @@ enum Colour {
 }
 
 type Flavor {
-    name: String
+    name: Name!
 }
 
 type Rating {
