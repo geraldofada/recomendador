@@ -76,6 +76,6 @@ type Rating {
 }
 
 enum RatingType {
-    FIVE_START
+    FIVE_STAR
     TWENTY_POINTS
 }
