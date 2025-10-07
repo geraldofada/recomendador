@@ -4,6 +4,7 @@ import br.uff.ic.recomendador.domain.models.Name
 import br.uff.ic.recomendador.domain.repositories.WineRepository
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsQuery
+import com.netflix.graphql.dgs.InputArgument
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -12,6 +13,6 @@ import org.springframework.stereotype.Service
 class WineRecommendation(
     @param:Autowired private val wineRepository: WineRepository
 ) {
-    @DgsQuery
-    fun getWine(name: Name) = wineRepository.getWineByName(name)
+    @DgsQuery(field = "wine")
+    fun getWineByName(@InputArgument name: Name) = wineRepository.getWineByName(name)
 }
