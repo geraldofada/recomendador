@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY food "http://uff.ic.br/ontologias/recomendador/food/" >
+     <!ENTITY vin  "http://uff.ic.br/ontologias/recomendador/wine/" >
+     <!ENTITY owl  "http://www.w3.org/2002/07/owl#" >
+     <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+     <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+   ]>
+
+<rdf:RDF
+  xmlns     = "http://uff.ic.br/ontologias/recomendador/food/"
+  xml:base  = "http://uff.ic.br/ontologias/recomendador/food/"
+  xmlns:food= "http://uff.ic.br/ontologias/recomendador/food/"
+  xmlns:vin = "http://uff.ic.br/ontologias/recomendador/wine/"
+  xmlns:owl = "http://www.w3.org/2002/07/owl#"
+  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd = "http://www.w3.org/2001/XMLSchema#">
+
+  <owl:Ontology rdf:about="">
+    <rdfs:label>Food Schema Ontology</rdfs:label>
+    <rdfs:comment>OWL2 Schema for food-related classes and properties</rdfs:comment>
+    <owl:versionInfo rdf:datatype="&xsd;string">2.0.0</owl:versionInfo>
+  </owl:Ontology>
+
+  <!-- ============================================== -->
+  <!-- Core Classes                                   -->
+  <!-- ============================================== -->
+
+  <owl:Class rdf:ID="Dish">
+    <rdfs:label xml:lang="en">dish</rdfs:label>
+    <rdfs:label xml:lang="pt">prato</rdfs:label>
+    <rdfs:comment>A prepared food dish that can be paired with wine</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Ingredient">
+    <rdfs:label xml:lang="en">ingredient</rdfs:label>
+    <rdfs:label xml:lang="pt">ingrediente</rdfs:label>
+    <rdfs:comment>A food ingredient used in dishes</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Cuisine">
+    <rdfs:label xml:lang="en">cuisine</rdfs:label>
+    <rdfs:label xml:lang="pt">cozinha</rdfs:label>
+    <rdfs:comment>A style or method of cooking, especially as characteristic of a particular country, region, or establishment</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:ID="MealCourse">
+    <rdfs:label xml:lang="en">meal course</rdfs:label>
+    <rdfs:label xml:lang="pt">prato da refeição</rdfs:label>
+    <rdfs:comment>A part of a meal served at one time</rdfs:comment>
+  </owl:Class>
+
+  <!-- ============================================== -->
+  <!-- Object Properties                              -->
+  <!-- ============================================== -->
+
+  <owl:ObjectProperty rdf:ID="hasFoodCategory">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="&vin;FoodCategory"/>
+    <rdfs:label xml:lang="en">has food category</rdfs:label>
+    <rdfs:label xml:lang="pt">tem categoria de comida</rdfs:label>
+    <rdfs:comment>Links a dish to its food category for wine pairing</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasRecommendedWine">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="&vin;Wine"/>
+    <rdfs:label xml:lang="en">has recommended wine</rdfs:label>
+    <rdfs:label xml:lang="pt">tem vinho recomendado</rdfs:label>
+    <rdfs:comment>Specific wine recommendation for this dish</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="containsIngredient">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#Ingredient"/>
+    <rdfs:label xml:lang="en">contains ingredient</rdfs:label>
+    <rdfs:label xml:lang="pt">contém ingrediente</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="servedWith">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#Dish"/>
+    <rdfs:label xml:lang="en">served with</rdfs:label>
+    <rdfs:label xml:lang="pt">servido com</rdfs:label>
+    <rdfs:comment>Dish that is typically served with this dish</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="partOfCuisine">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#Cuisine"/>
+    <rdfs:label xml:lang="en">part of cuisine</rdfs:label>
+    <rdfs:label xml:lang="pt">parte da cozinha</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasCourse">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#MealCourse"/>
+    <rdfs:label xml:lang="en">has course</rdfs:label>
+    <rdfs:label xml:lang="pt">tem prato</rdfs:label>
+  </owl:ObjectProperty>
+
+  <!-- ============================================== -->
+  <!-- Datatype Properties                            -->
+  <!-- ============================================== -->
+
+  <owl:DatatypeProperty rdf:ID="hasPreparationTime">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="&xsd;integer"/>
+    <rdfs:label xml:lang="en">has preparation time</rdfs:label>
+    <rdfs:label xml:lang="pt">tem tempo de preparo</rdfs:label>
+    <rdfs:comment>Preparation time in minutes</rdfs:comment>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasDifficultyLevel">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:label xml:lang="en">has difficulty level</rdfs:label>
+    <rdfs:label xml:lang="pt">tem nível de dificuldade</rdfs:label>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="isVegetarian">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="&xsd;boolean"/>
+    <rdfs:label xml:lang="en">is vegetarian</rdfs:label>
+    <rdfs:label xml:lang="pt">é vegetariano</rdfs:label>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="isVegan">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="&xsd;boolean"/>
+    <rdfs:label xml:lang="en">is vegan</rdfs:label>
+    <rdfs:label xml:lang="pt">é vegano</rdfs:label>
+  </owl:DatatypeProperty>
+
+</rdf:RDF>

@@ -4,6 +4,9 @@ scalar Date @specifiedBy(url: "https://tools.ietf.org/html/rfc3339")
 type Query {
     food(name: Name!): Food
     wine(name: Name!): Wine
+    dish(name: Name!): Dish
+    recommendWineByCategory(category: Name!): [Wine!]!
+    recommendWineByDish(dish: Name!): [Wine!]!
 }
 
 interface Edible {
@@ -15,6 +18,12 @@ interface Colorable {
 }
 
 type Food implements Edible {
+    id: ID!
+    name: Name!
+    flavors: [Flavor!]!
+}
+
+type Dish implements Edible {
     id: ID!
     name: Name!
     flavors: [Flavor!]!

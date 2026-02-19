@@ -1,0 +1,77 @@
+@prefix rec: <http://uff.ic.br/ontologias/recomendador/recommendation/> .
+@prefix food: <http://uff.ic.br/ontologias/recomendador/food/> .
+@prefix vin: <http://uff.ic.br/ontologias/recomendador/wine/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ==============================================
+# Pairing Strength Levels
+# ==============================================
+
+rec:Perfect a owl:NamedIndividual , rec:PairingStrength ;
+    rdfs:label "Perfect"@en ,
+               "Perfeita"@pt .
+
+rec:Excellent a owl:NamedIndividual , rec:PairingStrength ;
+    rdfs:label "Excellent"@en ,
+               "Excelente"@pt .
+
+rec:Good a owl:NamedIndividual , rec:PairingStrength ;
+    rdfs:label "Good"@en ,
+               "Boa"@pt .
+
+rec:Fair a owl:NamedIndividual , rec:PairingStrength ;
+    rdfs:label "Fair"@en ,
+               "Razoável"@pt .
+
+# ==============================================
+# Pairing Rules
+# ==============================================
+
+rec:SeafoodWhiteWineRule a owl:NamedIndividual , rec:PairingRule ;
+    rdfs:label "Seafood pairs with white wine"@en ,
+               "Frutos do mar combinam com vinho branco"@pt ;
+    rec:appliesToCategory vin:Seafood ;
+    rec:hasExplanation "The high acidity and minerality of white wines complement the delicate flavors of seafood without overpowering them."@en .
+
+rec:RedMeatRedWineRule a owl:NamedIndividual , rec:PairingRule ;
+    rdfs:label "Red meat pairs with red wine"@en ,
+               "Carne vermelha combina com vinho tinto"@pt ;
+    rec:appliesToCategory vin:RedMeat ;
+    rec:hasExplanation "The tannins in red wine help cut through the richness of red meat and cleanse the palate."@en .
+
+rec:DessertSweetWineRule a owl:NamedIndividual , rec:PairingRule ;
+    rdfs:label "Dessert pairs with sweet wine"@en ,
+               "Sobremesa combina com vinho doce"@pt ;
+    rec:appliesToCategory vin:Dessert ;
+    rec:hasExplanation "Sweet wines match the sweetness of desserts without tasting bitter or acidic."@en .
+
+# ==============================================
+# Example Recommendations
+# ==============================================
+
+rec:Rec001 a owl:NamedIndividual , rec:Recommendation ;
+    rec:forDish food:Picanha ;
+    rec:recommendsWine vin:FormanCabernetSauvignon ;
+    rec:hasPairingStrength rec:Perfect ;
+    rec:basedOnRule rec:RedMeatRedWineRule ;
+    rec:hasConfidence "0.95"^^xsd:float ;
+    rec:hasExplanation "The bold tannins of Cabernet Sauvignon pair perfectly with the rich, fatty texture of Brazilian picanha steak."@en .
+
+rec:Rec002 a owl:NamedIndividual , rec:Recommendation ;
+    rec:forDish food:Salmon ;
+    rec:recommendsWine vin:BancroftChardonnay ;
+    rec:hasPairingStrength rec:Excellent ;
+    rec:basedOnRule rec:SeafoodWhiteWineRule ;
+    rec:hasConfidence "0.90"^^xsd:float ;
+    rec:hasExplanation "Chardonnay's buttery texture and moderate acidity complement the rich, flaky texture of grilled salmon."@en .
+
+rec:Rec003 a owl:NamedIndividual , rec:Recommendation ;
+    rec:forDish food:ChocolateCake ;
+    rec:recommendsWine vin:TaylorPort ;
+    rec:hasPairingStrength rec:Perfect ;
+    rec:basedOnRule rec:DessertSweetWineRule ;
+    rec:hasConfidence "0.95"^^xsd:float ;
+    rec:hasExplanation "Port's rich sweetness and chocolate notes create a luxurious pairing with chocolate desserts."@en .

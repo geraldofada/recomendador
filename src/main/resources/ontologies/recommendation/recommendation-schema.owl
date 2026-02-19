@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY rec  "http://uff.ic.br/ontologias/recomendador/recommendation/" >
+     <!ENTITY food "http://uff.ic.br/ontologias/recomendador/food/" >
+     <!ENTITY vin  "http://uff.ic.br/ontologias/recomendador/wine/" >
+     <!ENTITY owl  "http://www.w3.org/2002/07/owl#" >
+     <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+     <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+   ]>
+
+<rdf:RDF
+  xmlns     = "http://uff.ic.br/ontologias/recomendador/recommendation/"
+  xml:base  = "http://uff.ic.br/ontologias/recomendador/recommendation/"
+  xmlns:rec = "http://uff.ic.br/ontologias/recomendador/recommendation/"
+  xmlns:food= "http://uff.ic.br/ontologias/recomendador/food/"
+  xmlns:vin = "http://uff.ic.br/ontologias/recomendador/wine/"
+  xmlns:owl = "http://www.w3.org/2002/07/owl#"
+  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd = "http://www.w3.org/2001/XMLSchema#">
+
+  <owl:Ontology rdf:about="">
+    <rdfs:label>Recommendation Schema Ontology</rdfs:label>
+    <rdfs:comment>OWL2 Schema for wine-food pairing recommendations</rdfs:comment>
+    <owl:versionInfo rdf:datatype="&xsd;string">2.0.0</owl:versionInfo>
+  </owl:Ontology>
+
+  <!-- ============================================== -->
+  <!-- Core Classes                                   -->
+  <!-- ============================================== -->
+
+  <owl:Class rdf:ID="Recommendation">
+    <rdfs:label xml:lang="en">recommendation</rdfs:label>
+    <rdfs:label xml:lang="pt">recomendação</rdfs:label>
+    <rdfs:comment>A wine recommendation for a specific dish</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:ID="PairingRule">
+    <rdfs:label xml:lang="en">pairing rule</rdfs:label>
+    <rdfs:label xml:lang="pt">regra de harmonização</rdfs:label>
+    <rdfs:comment>A rule for pairing wine with food</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:ID="PairingStrength">
+    <rdfs:label xml:lang="en">pairing strength</rdfs:label>
+    <rdfs:label xml:lang="pt">intensidade da harmonização</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="WineRating">
+    <rdfs:label xml:lang="en">wine rating</rdfs:label>
+    <rdfs:label xml:lang="pt">avaliação do vinho</rdfs:label>
+  </owl:Class>
+
+  <!-- ============================================== -->
+  <!-- Object Properties                              -->
+  <!-- ============================================== -->
+
+  <owl:ObjectProperty rdf:ID="recommendsWine">
+    <rdfs:domain rdf:resource="#Recommendation"/>
+    <rdfs:range rdf:resource="&vin;Wine"/>
+    <rdfs:label xml:lang="en">recommends wine</rdfs:label>
+    <rdfs:label xml:lang="pt">recomenda vinho</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="forDish">
+    <rdfs:domain rdf:resource="#Recommendation"/>
+    <rdfs:range rdf:resource="&food;Dish"/>
+    <rdfs:label xml:lang="en">for dish</rdfs:label>
+    <rdfs:label xml:lang="pt">para prato</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasPairingStrength">
+    <rdfs:domain rdf:resource="#Recommendation"/>
+    <rdfs:range rdf:resource="#PairingStrength"/>
+    <rdfs:label xml:lang="en">has pairing strength</rdfs:label>
+    <rdfs:label xml:lang="pt">tem intensidade da harmonização</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="basedOnRule">
+    <rdfs:domain rdf:resource="#Recommendation"/>
+    <rdfs:range rdf:resource="#PairingRule"/>
+    <rdfs:label xml:lang="en">based on rule</rdfs:label>
+    <rdfs:label xml:lang="pt">baseado em regra</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="appliesToCategory">
+    <rdfs:domain rdf:resource="#PairingRule"/>
+    <rdfs:range rdf:resource="&vin;FoodCategory"/>
+    <rdfs:label xml:lang="en">applies to category</rdfs:label>
+    <rdfs:label xml:lang="pt">aplica-se à categoria</rdfs:label>
+  </owl:ObjectProperty>
+
+  <!-- ============================================== -->
+  <!-- Datatype Properties                            -->
+  <!-- ============================================== -->
+
+  <owl:DatatypeProperty rdf:ID="hasConfidence">
+    <rdfs:domain rdf:resource="#Recommendation"/>
+    <rdfs:range rdf:resource="&xsd;float"/>
+    <rdfs:label xml:lang="en">has confidence</rdfs:label>
+    <rdfs:label xml:lang="pt">tem confiança</rdfs:label>
+    <rdfs:comment>Confidence level of the recommendation (0.0 to 1.0)</rdfs:comment>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasExplanation">
+    <rdfs:domain rdf:resource="#Recommendation"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:label xml:lang="en">has explanation</rdfs:label>
+    <rdfs:label xml:lang="pt">tem explicação</rdfs:label>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasRating">
+    <rdfs:domain rdf:resource="#WineRating"/>
+    <rdfs:range rdf:resource="&xsd;float"/>
+    <rdfs:label xml:lang="en">has rating</rdfs:label>
+    <rdfs:label xml:lang="pt">tem avaliação</rdfs:label>
+  </owl:DatatypeProperty>
+
+</rdf:RDF>
