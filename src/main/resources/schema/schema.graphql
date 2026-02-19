@@ -5,8 +5,10 @@ type Query {
     food(name: Name!): Food
     wine(name: Name!): Wine
     dish(name: Name!): Dish
-    recommendWineByCategory(category: Name!): [Wine!]!
-    recommendWineByDish(dish: Name!): [Wine!]!
+    recommendWinesForDish(dish: Name!): [WinePairing!]!
+    recommendDishesForWine(wine: Name!): [FoodPairing!]!
+    wineSensoryProfile(wine: Name!): WineSensoryProfile
+    foodSensoryProfile(food: Name!): FoodSensoryProfile
 }
 
 interface Edible {
@@ -87,4 +89,33 @@ type Rating {
 enum RatingType {
     FIVE_STAR
     TWENTY_POINTS
+}
+
+type WinePairing {
+    wine: Wine!
+    score: Float!
+    explanation: String
+}
+
+type FoodPairing {
+    food: Food!
+    score: Float!
+    explanation: String
+}
+
+type WineSensoryProfile {
+    acidity: String!
+    tannin: String!
+    alcohol: String!
+    body: String!
+    sugar: String!
+    aroma: String!
+}
+
+type FoodSensoryProfile {
+    fatness: String!
+    saltiness: String!
+    sweetness: String!
+    spiciness: String!
+    umami: String!
 }

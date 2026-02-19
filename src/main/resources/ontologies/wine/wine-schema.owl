@@ -149,12 +149,6 @@
     <rdfs:label xml:lang="pt">aroma do vinho</rdfs:label>
   </owl:Class>
 
-  <owl:Class rdf:ID="FoodCategory">
-    <rdfs:label xml:lang="en">food category</rdfs:label>
-    <rdfs:label xml:lang="pt">categoria de comida</rdfs:label>
-    <rdfs:comment>Categories of food for wine pairing recommendations</rdfs:comment>
-  </owl:Class>
-
   <!-- ============================================== -->
   <!-- Wine Type Classes                              -->
   <!-- ============================================== -->
@@ -512,22 +506,6 @@
     <rdfs:label xml:lang="pt">tem ano da safra</rdfs:label>
   </owl:ObjectProperty>
 
-  <owl:ObjectProperty rdf:ID="hasFoodCategory">
-    <rdfs:domain rdf:resource="#Wine"/>
-    <rdfs:range rdf:resource="#FoodCategory"/>
-    <rdfs:label xml:lang="en">has food category</rdfs:label>
-    <rdfs:label xml:lang="pt">tem categoria de comida</rdfs:label>
-    <rdfs:comment>Indicates which food categories pair well with this wine</rdfs:comment>
-  </owl:ObjectProperty>
-
-  <owl:ObjectProperty rdf:ID="hasRecommendedWine">
-    <rdfs:domain rdf:resource="#FoodCategory"/>
-    <rdfs:range rdf:resource="#Wine"/>
-    <rdfs:label xml:lang="en">has recommended wine</rdfs:label>
-    <rdfs:label xml:lang="pt">tem vinho recomendado</rdfs:label>
-    <owl:inverseOf rdf:resource="#hasFoodCategory"/>
-  </owl:ObjectProperty>
-
   <owl:ObjectProperty rdf:ID="producesWine">
     <rdfs:domain rdf:resource="#Winery"/>
     <rdfs:range rdf:resource="#Wine"/>
@@ -548,6 +526,133 @@
     <rdfs:range rdf:resource="#WineDescriptor"/>
     <rdfs:label xml:lang="en">has wine descriptor</rdfs:label>
     <rdfs:label xml:lang="pt">tem descritor de vinho</rdfs:label>
+  </owl:ObjectProperty>
+
+  <!-- ============================================== -->
+  <!-- Wine Structural Properties (New)               -->
+  <!-- ============================================== -->
+
+  <owl:Class rdf:ID="AcidityLevel">
+    <rdfs:subClassOf rdf:resource="&vin;WineDescriptor"/>
+    <rdfs:label xml:lang="en">acidity level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de acidez</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="TanninLevel">
+    <rdfs:subClassOf rdf:resource="&vin;WineDescriptor"/>
+    <rdfs:label xml:lang="en">tannin level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de tanino</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="AlcoholLevel">
+    <rdfs:subClassOf rdf:resource="&vin;WineDescriptor"/>
+    <rdfs:label xml:lang="en">alcohol level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de álcool</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="AromaIntensity">
+    <rdfs:subClassOf rdf:resource="&vin;WineDescriptor"/>
+    <rdfs:label xml:lang="en">aroma intensity</rdfs:label>
+    <rdfs:label xml:lang="pt">intensidade de aroma</rdfs:label>
+  </owl:Class>
+
+  <!-- Acidity Level Instances -->
+  <owl:NamedIndividual rdf:ID="LowAcidity">
+    <rdf:type rdf:resource="#AcidityLevel"/>
+    <rdfs:label xml:lang="en">low acidity</rdfs:label>
+    <rdfs:label xml:lang="pt">baixa acidez</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumAcidity">
+    <rdf:type rdf:resource="#AcidityLevel"/>
+    <rdfs:label xml:lang="en">medium acidity</rdfs:label>
+    <rdfs:label xml:lang="pt">acidez média</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighAcidity">
+    <rdf:type rdf:resource="#AcidityLevel"/>
+    <rdfs:label xml:lang="en">high acidity</rdfs:label>
+    <rdfs:label xml:lang="pt">alta acidez</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Tannin Level Instances -->
+  <owl:NamedIndividual rdf:ID="LowTannin">
+    <rdf:type rdf:resource="#TanninLevel"/>
+    <rdfs:label xml:lang="en">low tannin</rdfs:label>
+    <rdfs:label xml:lang="pt">baixo tanino</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumTannin">
+    <rdf:type rdf:resource="#TanninLevel"/>
+    <rdfs:label xml:lang="en">medium tannin</rdfs:label>
+    <rdfs:label xml:lang="pt">tanino médio</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighTannin">
+    <rdf:type rdf:resource="#TanninLevel"/>
+    <rdfs:label xml:lang="en">high tannin</rdfs:label>
+    <rdfs:label xml:lang="pt">alto tanino</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Alcohol Level Instances -->
+  <owl:NamedIndividual rdf:ID="LowAlcohol">
+    <rdf:type rdf:resource="#AlcoholLevel"/>
+    <rdfs:label xml:lang="en">low alcohol</rdfs:label>
+    <rdfs:label xml:lang="pt">baixo álcool</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumAlcohol">
+    <rdf:type rdf:resource="#AlcoholLevel"/>
+    <rdfs:label xml:lang="en">medium alcohol</rdfs:label>
+    <rdfs:label xml:lang="pt">álcool médio</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighAlcohol">
+    <rdf:type rdf:resource="#AlcoholLevel"/>
+    <rdfs:label xml:lang="en">high alcohol</rdfs:label>
+    <rdfs:label xml:lang="pt">alto álcool</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Aroma Intensity Instances -->
+  <owl:NamedIndividual rdf:ID="Aromatic">
+    <rdf:type rdf:resource="#AromaIntensity"/>
+    <rdfs:label xml:lang="en">aromatic</rdfs:label>
+    <rdfs:label xml:lang="pt">aromático</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="NeutralAroma">
+    <rdf:type rdf:resource="#AromaIntensity"/>
+    <rdfs:label xml:lang="en">neutral</rdfs:label>
+    <rdfs:label xml:lang="pt">neutro</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Object Properties for New Wine Properties -->
+  <owl:ObjectProperty rdf:ID="hasAcidity">
+    <rdfs:domain rdf:resource="#Wine"/>
+    <rdfs:range rdf:resource="#AcidityLevel"/>
+    <rdfs:label xml:lang="en">has acidity</rdfs:label>
+    <rdfs:label xml:lang="pt">tem acidez</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasTannin">
+    <rdfs:domain rdf:resource="#Wine"/>
+    <rdfs:range rdf:resource="#TanninLevel"/>
+    <rdfs:label xml:lang="en">has tannin</rdfs:label>
+    <rdfs:label xml:lang="pt">tem tanino</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasAlcohol">
+    <rdfs:domain rdf:resource="#Wine"/>
+    <rdfs:range rdf:resource="#AlcoholLevel"/>
+    <rdfs:label xml:lang="en">has alcohol</rdfs:label>
+    <rdfs:label xml:lang="pt">tem álcool</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasAroma">
+    <rdfs:domain rdf:resource="#Wine"/>
+    <rdfs:range rdf:resource="#AromaIntensity"/>
+    <rdfs:label xml:lang="en">has aroma</rdfs:label>
+    <rdfs:label xml:lang="pt">tem aroma</rdfs:label>
   </owl:ObjectProperty>
 
 </rdf:RDF>

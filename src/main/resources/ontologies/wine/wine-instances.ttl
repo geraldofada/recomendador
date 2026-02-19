@@ -4,33 +4,6 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-# ==============================================
-# Food Categories for Wine Pairing
-# ==============================================
-
-vin:Seafood a owl:NamedIndividual , vin:FoodCategory ;
-    rdfs:label "Seafood"@en ,
-               "Frutos do Mar"@pt .
-
-vin:Poultry a owl:NamedIndividual , vin:FoodCategory ;
-    rdfs:label "Poultry"@en ,
-               "Aves"@pt .
-
-vin:RedMeat a owl:NamedIndividual , vin:FoodCategory ;
-    rdfs:label "Red Meat"@en ,
-               "Carne Vermelha"@pt .
-
-vin:Pasta a owl:NamedIndividual , vin:FoodCategory ;
-    rdfs:label "Pasta"@en ,
-               "Massas"@pt .
-
-vin:Cheese a owl:NamedIndividual , vin:FoodCategory ;
-    rdfs:label "Cheese"@en ,
-               "Queijos"@pt .
-
-vin:Dessert a owl:NamedIndividual , vin:FoodCategory ;
-    rdfs:label "Dessert"@en ,
-               "Sobremesa"@pt .
 
 # ==============================================
 # Wine Descriptors (Shared instances)
@@ -93,140 +66,140 @@ vin:Full a owl:NamedIndividual , vin:WineBody ;
 # ==============================================
 
 vin:BancroftChardonnay a owl:NamedIndividual , vin:Chardonnay ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Bancroft Chardonnay" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:FormanChardonnay a owl:NamedIndividual , vin:Chardonnay ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Forman Chardonnay" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Full .
 
 vin:PeterMccoyChardonnay a owl:NamedIndividual , vin:Chardonnay ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Peter McCoy Chardonnay" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:MountEdenVineyardEdnaValleyChardonnay a owl:NamedIndividual , vin:Chardonnay ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Mount Eden Vineyard Edna Valley Chardonnay" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:MountadamChardonnay a owl:NamedIndividual , vin:Chardonnay ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Mountadam Chardonnay" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Full .
 
 vin:CorbansSauvignonBlanc a owl:NamedIndividual , vin:SauvignonBlanc ;
+    vin:hasAcidity vin:HighAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Corbans Sauvignon Blanc" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Medium .
 
 vin:CorbansPrivateBinSauvignonBlanc a owl:NamedIndividual , vin:SauvignonBlanc ;
+    vin:hasAcidity vin:HighAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Corbans Private Bin Sauvignon Blanc" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Full .
 
 vin:SelaksSauvignonBlanc a owl:NamedIndividual , vin:SauvignonBlanc ;
+    vin:hasAcidity vin:HighAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Selaks Sauvignon Blanc" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:StonleighSauvignonBlanc a owl:NamedIndividual , vin:SauvignonBlanc ;
+    vin:hasAcidity vin:HighAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Stonleigh Sauvignon Blanc" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Delicate ;
     vin:hasBody vin:Medium .
 
 vin:FoxenCheninBlanc a owl:NamedIndividual , vin:CheninBlanc ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Foxen Chenin Blanc" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Full .
 
 vin:VentanaCheninBlanc a owl:NamedIndividual , vin:CheninBlanc ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Ventana Chenin Blanc" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasSugar vin:OffDry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:CorbansDryWhiteRiesling a owl:NamedIndividual , vin:Riesling ;
+    vin:hasAcidity vin:HighAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Corbans Dry White Riesling" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Pasta ;
     vin:hasSugar vin:OffDry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:MountadamRiesling a owl:NamedIndividual , vin:DryRiesling ;
+    vin:hasAcidity vin:HighAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Mountadam Riesling" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Pasta ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Delicate ;
     vin:hasBody vin:Medium .
 
 vin:CongressSpringsSemillon a owl:NamedIndividual , vin:Semillon ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Congress Springs Semillon" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:KalinCellarsSemillon a owl:NamedIndividual , vin:Semillon ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Kalin Cellars Semillon" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Full .
 
 vin:ClosDeLaPoussieSancerre a owl:NamedIndividual , vin:Sancerre ;
-    rdfs:label "Clos De La Poussie Sancerre" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese .
+    vin:hasAcidity vin:HighAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
+    rdfs:label "Clos De La Poussie Sancerre" .
 
 vin:SevreEtMaineMuscadet a owl:NamedIndividual , vin:Muscadet ;
-    rdfs:label "Sevre Et Maine Muscadet" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese .
+    vin:hasAcidity vin:HighAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
+    rdfs:label "Sevre Et Maine Muscadet" .
 
 vin:ChateauDeMeursaultMeursault a owl:NamedIndividual , vin:Meursault ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Chateau De Meursault Meursault" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasFlavor vin:Moderate .
 
 vin:CortonMontrachetWhiteBurgundy a owl:NamedIndividual , vin:WhiteBurgundy ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Corton Montrachet White Burgundy" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Full .
 
 vin:PulignyMontrachetWhiteBurgundy a owl:NamedIndividual , vin:WhiteBurgundy ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Puligny Montrachet White Burgundy" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:StGenevieveTexasWhite a owl:NamedIndividual , vin:WhiteWine ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "St Genevieve Texas White" ;
-    vin:hasFoodCategory vin:Seafood , vin:Poultry , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate .
 
@@ -235,204 +208,204 @@ vin:StGenevieveTexasWhite a owl:NamedIndividual , vin:WhiteWine ;
 # ==============================================
 
 vin:CotturiZinfandel a owl:NamedIndividual , vin:Zinfandel ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Cotturi Zinfandel" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Full .
 
 vin:ElyseZinfandel a owl:NamedIndividual , vin:Zinfandel ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Elyse Zinfandel" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Full .
 
 vin:MariettaZinfandel a owl:NamedIndividual , vin:Zinfandel ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Marietta Zinfandel" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:SaucelitoCanyonZinfandel a owl:NamedIndividual , vin:Zinfandel ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Saucelito Canyon Zinfandel" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:SaucelitoCanyonZinfandel1998 a owl:NamedIndividual , vin:Zinfandel ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Saucelito Canyon Zinfandel 1998" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:FormanCabernetSauvignon a owl:NamedIndividual , vin:CabernetSauvignon ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Forman Cabernet Sauvignon" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Medium .
 
 vin:MariettaCabernetSauvignon a owl:NamedIndividual , vin:CabernetSauvignon ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Marietta Cabernet Sauvignon" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:PageMillWineryCabernetSauvignon a owl:NamedIndividual , vin:CabernetSauvignon ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Page Mill Winery Cabernet Sauvignon" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:SantaCruzMountainVineyardCabernetSauvignon a owl:NamedIndividual , vin:CabernetSauvignon ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Santa Cruz Mountain Vineyard Cabernet Sauvignon" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Full .
 
 vin:WhitehallLaneCabernetFranc a owl:NamedIndividual , vin:CabernetFranc ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Whitehall Lane Cabernet Franc" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:GaryFarrellMerlot a owl:NamedIndividual , vin:Merlot ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Gary Farrell Merlot" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:LongridgeMerlot a owl:NamedIndividual , vin:Merlot ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Longridge Merlot" ;
-    vin:hasFoodCategory vin:Poultry , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Light .
 
 vin:LaneTannerPinotNoir a owl:NamedIndividual , vin:PinotNoir ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Lane Tanner Pinot Noir" ;
-    vin:hasFoodCategory vin:Poultry , vin:Seafood , vin:Pasta ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Delicate ;
     vin:hasBody vin:Light .
 
 vin:MountadamPinotNoir a owl:NamedIndividual , vin:PinotNoir ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Mountadam Pinot Noir" ;
-    vin:hasFoodCategory vin:Poultry , vin:Seafood , vin:Pasta ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:MountEdenVineyardEstatePinotNoir a owl:NamedIndividual , vin:PinotNoir ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Mount Eden Vineyard Estate Pinot Noir" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Full .
 
 vin:MariettaPetiteSyrah a owl:NamedIndividual , vin:PetiteSyrah ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Marietta Petite Syrah" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:SeanThackreySiriusPetiteSyrah a owl:NamedIndividual , vin:PetiteSyrah ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Sean Thackrey Sirius Petite Syrah" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Full .
 
 vin:ChateauChevalBlancStEmilion a owl:NamedIndividual , vin:StEmilion ;
-    rdfs:label "Chateau Cheval Blanc St Emilion" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese .
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
+    rdfs:label "Chateau Cheval Blanc St Emilion" .
 
 vin:ChateauLafiteRothschildPauillac a owl:NamedIndividual , vin:Pauillac ;
-    rdfs:label "Chateau Lafite Rothschild Pauillac" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese .
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
+    rdfs:label "Chateau Lafite Rothschild Pauillac" .
 
 vin:ChateauMargaux a owl:NamedIndividual , vin:Margaux ;
-    rdfs:label "Chateau Margaux" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese .
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:HighTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:NeutralAroma ;
+    rdfs:label "Chateau Margaux" .
 
 vin:ClosDeVougeotCotesDOr a owl:NamedIndividual , vin:CotesDOr ;
-    rdfs:label "Clos De Vougeot Cotes D Or" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese .
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
+    rdfs:label "Clos De Vougeot Cotes D Or" .
 
 vin:MariettaOldVinesRed a owl:NamedIndividual , vin:RedTableWine ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Marietta Old Vines Red" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta , vin:Cheese ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium .
 
 vin:ChateauMorgonBeaujolais a owl:NamedIndividual , vin:Beaujolais ;
-    rdfs:label "Chateau Morgon Beaujolais" ;
-    vin:hasFoodCategory vin:Poultry , vin:Pasta , vin:Cheese .
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
+    rdfs:label "Chateau Morgon Beaujolais" .
 
 vin:ChiantiClassico a owl:NamedIndividual , vin:Chianti ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Chianti Classico" ;
-    vin:hasFoodCategory vin:Pasta , vin:RedMeat , vin:Cheese ;
     vin:hasBody vin:Medium .
 
 vin:KathrynKennedyLateral a owl:NamedIndividual , vin:Meritage ;
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
     rdfs:label "Kathryn Kennedy Lateral" ;
-    vin:hasFoodCategory vin:RedMeat , vin:Pasta ;
     vin:hasSugar vin:Dry ;
     vin:hasFlavor vin:Delicate ;
     vin:hasBody vin:Medium .
 
 vin:RoseDAnjou a owl:NamedIndividual , vin:Anjou ;
-    rdfs:label "Rose D Anjou" ;
-    vin:hasFoodCategory vin:Poultry , vin:Pasta , vin:Cheese .
+    vin:hasAcidity vin:MediumAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:NeutralAroma ;
+    rdfs:label "Rose D Anjou" .
 
 # ==============================================
 # Dessert Wines
 # ==============================================
 
 vin:TaylorPort a owl:NamedIndividual , vin:Port ;
-    rdfs:label "Taylor Port" ;
-    vin:hasFoodCategory vin:Dessert , vin:Cheese , vin:RedMeat .
+    vin:hasAcidity vin:LowAcidity ; vin:hasTannin vin:MediumTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:Aromatic ;
+    rdfs:label "Taylor Port" .
 
 vin:WhitehallLanePrimavera a owl:NamedIndividual , vin:DessertWine ;
+    vin:hasAcidity vin:LowAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:HighAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Whitehall Lane Primavera" ;
-    vin:hasFoodCategory vin:Dessert , vin:Cheese ;
     vin:hasSugar vin:Sweet ;
     vin:hasFlavor vin:Delicate ;
     vin:hasBody vin:Light .
 
 vin:SchlossRothermelTrochenbierenausleseRiesling a owl:NamedIndividual , vin:SweetRiesling ;
+    vin:hasAcidity vin:LowAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Schloss Rothermel Trochenbierenauslese Riesling" ;
-    vin:hasFoodCategory vin:Dessert , vin:Cheese ;
     vin:hasSugar vin:Sweet ;
     vin:hasFlavor vin:Strong ;
     vin:hasBody vin:Full .
 
 vin:SchlossVolradTrochenbierenausleseRiesling a owl:NamedIndividual , vin:SweetRiesling ;
+    vin:hasAcidity vin:LowAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Schloss Volrad Trochenbierenauslese Riesling" ;
-    vin:hasFoodCategory vin:Dessert , vin:Cheese ;
     vin:hasSugar vin:Sweet ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Full .
 
 vin:SelaksIceWine a owl:NamedIndividual , vin:IceWine ;
+    vin:hasAcidity vin:LowAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Selaks Ice Wine" ;
-    vin:hasFoodCategory vin:Dessert , vin:Cheese ;
     vin:hasFlavor vin:Moderate ;
     vin:hasBody vin:Medium ;
     vin:hasColor vin:White .
 
 vin:ChateauDYchemSauterne a owl:NamedIndividual , vin:Sauternes ;
+    vin:hasAcidity vin:LowAcidity ; vin:hasTannin vin:LowTannin ; vin:hasAlcohol vin:MediumAlcohol ; vin:hasAroma vin:Aromatic ;
     rdfs:label "Chateau DYchem Sauterne" ;
-    vin:hasFoodCategory vin:Dessert , vin:Cheese ;
     vin:hasFlavor vin:Strong .

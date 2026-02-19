@@ -84,11 +84,24 @@
     <rdfs:label xml:lang="pt">baseado em regra</rdfs:label>
   </owl:ObjectProperty>
 
-  <owl:ObjectProperty rdf:ID="appliesToCategory">
-    <rdfs:domain rdf:resource="#PairingRule"/>
-    <rdfs:range rdf:resource="&vin;FoodCategory"/>
-    <rdfs:label xml:lang="en">applies to category</rdfs:label>
-    <rdfs:label xml:lang="pt">aplica-se à categoria</rdfs:label>
+  <!-- ============================================== -->
+  <!-- Inferred Pairing Properties (for SWRL rules)   -->
+  <!-- ============================================== -->
+
+  <owl:ObjectProperty rdf:ID="recommendsPairing">
+    <rdfs:domain rdf:resource="&vin;Wine"/>
+    <rdfs:range rdf:resource="&food;Dish"/>
+    <rdfs:label xml:lang="en">recommends pairing</rdfs:label>
+    <rdfs:label xml:lang="pt">recomenda harmonização</rdfs:label>
+    <rdfs:comment>Inferred pairing recommendation based on structural properties (acidity, tannin, body, etc.)</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="notRecommended">
+    <rdfs:domain rdf:resource="&vin;Wine"/>
+    <rdfs:range rdf:resource="&food;Dish"/>
+    <rdfs:label xml:lang="en">not recommended</rdfs:label>
+    <rdfs:label xml:lang="pt">não recomendado</rdfs:label>
+    <rdfs:comment>Inferred non-recommendation based on conflicting properties</rdfs:comment>
   </owl:ObjectProperty>
 
   <!-- ============================================== -->

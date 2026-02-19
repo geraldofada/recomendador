@@ -88,49 +88,60 @@ food:Butter a owl:NamedIndividual , food:Ingredient ;
 food:Salmon a owl:NamedIndividual , food:Dish ;
     rdfs:label "Grilled Salmon"@en ,
                "Salmão Grelhado"@pt ;
-    food:hasFoodCategory vin:Seafood ;
     food:containsIngredient food:SalmonFish , food:OliveOil , food:Garlic ;
-    food:hasRecommendedWine vin:BancroftChardonnay ,
-                            vin:FormanChardonnay ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Shrimp a owl:NamedIndividual , food:Dish ;
     rdfs:label "Garlic Shrimp"@en ,
                "Camarão ao Alho"@pt ;
-    food:hasFoodCategory vin:Seafood ;
     food:containsIngredient food:Shellfish , food:Garlic , food:OliveOil ;
-    food:hasRecommendedWine vin:CorbansSauvignonBlanc ,
-                            vin:SelaksSauvignonBlanc ;
+    food:hasFatness food:LowFat ;
+    food:hasSaltiness food:MediumSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Lobster a owl:NamedIndividual , food:Dish ;
     rdfs:label "Butter Lobster"@en ,
                "Lagosta à Moda"@pt ;
-    food:hasFoodCategory vin:Seafood ;
     food:containsIngredient food:Shellfish , food:Butter ;
-    food:hasRecommendedWine vin:CortonMontrachetWhiteBurgundy ,
-                            vin:PulignyMontrachetWhiteBurgundy ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Codfish a owl:NamedIndividual , food:Dish ;
     rdfs:label "Baked Codfish"@en ,
                "Bacalhau Assado"@pt ;
-    food:hasFoodCategory vin:Seafood ;
     food:containsIngredient food:Fish , food:OliveOil , food:Garlic ;
-    food:hasRecommendedWine vin:SevreEtMaineMuscadet ,
-                            vin:ClosDeLaPoussieSancerre ;
+    food:hasFatness food:LowFat ;
+    food:hasSaltiness food:MediumSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Tuna a owl:NamedIndividual , food:Dish ;
     rdfs:label "Seared Tuna"@en ,
                "Atum Selado"@pt ;
-    food:hasFoodCategory vin:Seafood ;
     food:containsIngredient food:Fish , food:OliveOil , food:Garlic ;
-    food:hasRecommendedWine vin:MountadamChardonnay ;
+    food:hasFatness food:LowFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
@@ -141,39 +152,48 @@ food:Tuna a owl:NamedIndividual , food:Dish ;
 food:RoastChicken a owl:NamedIndividual , food:Dish ;
     rdfs:label "Roast Chicken"@en ,
                "Frango Assado"@pt ;
-    food:hasFoodCategory vin:Poultry ;
     food:containsIngredient food:Chicken , food:Garlic , food:OliveOil ;
-    food:hasRecommendedWine vin:BancroftChardonnay ,
-                            vin:PeterMccoyChardonnay ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Duck a owl:NamedIndividual , food:Dish ;
     rdfs:label "Roasted Duck"@en ,
                "Pato Assado"@pt ;
-    food:hasFoodCategory vin:Poultry ;
     food:containsIngredient food:DuckMeat , food:Garlic ;
-    food:hasRecommendedWine vin:LaneTannerPinotNoir ,
-                            vin:MountadamPinotNoir ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:MediumSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Turkey a owl:NamedIndividual , food:Dish ;
     rdfs:label "Roasted Turkey"@en ,
                "Peru Assado"@pt ;
-    food:hasFoodCategory vin:Poultry ;
     food:containsIngredient food:Chicken ;
-    food:hasRecommendedWine vin:FormanChardonnay ,
-                            vin:LongridgeMerlot ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:ChickenParmesan a owl:NamedIndividual , food:Dish ;
     rdfs:label "Chicken Parmesan"@en ,
                "Frango à Parmegiana"@pt ;
-    food:hasFoodCategory vin:Poultry , vin:Pasta ;
     food:containsIngredient food:Chicken , food:Parmesan , food:Tomato ;
-    food:hasRecommendedWine vin:ChiantiClassico ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:MediumSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
@@ -184,60 +204,72 @@ food:ChickenParmesan a owl:NamedIndividual , food:Dish ;
 food:Picanha a owl:NamedIndividual , food:Dish ;
     rdfs:label "Brazilian Picanha Steak"@en ,
                "Picanha na Chapa"@pt ;
-    food:hasFoodCategory vin:RedMeat ;
     food:containsIngredient food:Beef , food:Garlic , food:OliveOil ;
-    food:hasRecommendedWine vin:FormanCabernetSauvignon ,
-                            vin:MariettaCabernetSauvignon ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:MediumSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Ribeye a owl:NamedIndividual , food:Dish ;
     rdfs:label "Ribeye Steak"@en ,
                "Bife Ancho"@pt ;
-    food:hasFoodCategory vin:RedMeat ;
     food:containsIngredient food:Beef , food:Butter , food:Garlic ;
-    food:hasRecommendedWine vin:SantaCruzMountainVineyardCabernetSauvignon ,
-                            vin:CotturiZinfandel ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:HighSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:FiletMignon a owl:NamedIndividual , food:Dish ;
     rdfs:label "Filet Mignon"@en ,
                "Filé Mignon"@pt ;
-    food:hasFoodCategory vin:RedMeat ;
     food:containsIngredient food:Beef , food:Butter ;
-    food:hasRecommendedWine vin:ChateauMargaux ,
-                            vin:ChateauLafiteRothschildPauillac ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:MediumSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Lamb a owl:NamedIndividual , food:Dish ;
     rdfs:label "Roasted Lamb"@en ,
                "Cordeiro Assado"@pt ;
-    food:hasFoodCategory vin:RedMeat ;
     food:containsIngredient food:Lamb , food:Garlic , food:OliveOil ;
-    food:hasRecommendedWine vin:ElyseZinfandel ,
-                            vin:GaryFarrellMerlot ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:MediumSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:BeefStew a owl:NamedIndividual , food:Dish ;
     rdfs:label "Beef Stew"@en ,
                "Ensopado de Carne"@pt ;
-    food:hasFoodCategory vin:RedMeat ;
     food:containsIngredient food:Beef , food:Tomato , food:Garlic ;
-    food:hasRecommendedWine vin:MariettaOldVinesRed ,
-                            vin:SeanThackreySiriusPetiteSyrah ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:MediumSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:PorkRibs a owl:NamedIndividual , food:Dish ;
     rdfs:label "BBQ Pork Ribs"@en ,
                "Costela de Porco BBQ"@pt ;
-    food:hasFoodCategory vin:RedMeat ;
     food:containsIngredient food:Pork , food:Tomato , food:Garlic ;
-    food:hasRecommendedWine vin:MariettaZinfandel ,
-                            vin:SaucelitoCanyonZinfandel ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:HighSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:MediumSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
@@ -248,50 +280,60 @@ food:PorkRibs a owl:NamedIndividual , food:Dish ;
 food:Lasagna a owl:NamedIndividual , food:Dish ;
     rdfs:label "Meat Lasagna"@en ,
                "Lasanha à Bolonhesa"@pt ;
-    food:hasFoodCategory vin:Pasta , vin:RedMeat ;
     food:containsIngredient food:Pasta , food:Beef , food:Tomato , food:Parmesan ;
-    food:hasRecommendedWine vin:ChiantiClassico ,
-                            vin:MariettaCabernetSauvignon ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:HighSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:SpaghettiCarbonara a owl:NamedIndividual , food:Dish ;
     rdfs:label "Spaghetti Carbonara"@en ,
                "Espaguete à Carbonara"@pt ;
-    food:hasFoodCategory vin:Pasta , vin:Cheese ;
     food:containsIngredient food:Pasta , food:Parmesan , food:Cream ;
-    food:hasRecommendedWine vin:KathrynKennedyLateral ,
-                            vin:LongridgeMerlot ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:HighSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "false"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:FettuccineAlfredo a owl:NamedIndividual , food:Dish ;
     rdfs:label "Fettuccine Alfredo"@en ,
                "Fettuccine Alfredo"@pt ;
-    food:hasFoodCategory vin:Pasta , vin:Cheese ;
     food:containsIngredient food:Pasta , food:Cream , food:Parmesan , food:Butter ;
-    food:hasRecommendedWine vin:FormanChardonnay ,
-                            vin:MountEdenVineyardEdnaValleyChardonnay ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:MediumSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:PenneArrabiata a owl:NamedIndividual , food:Dish ;
     rdfs:label "Penne Arrabiata"@en ,
                "Penne Arrabiata"@pt ;
-    food:hasFoodCategory vin:Pasta ;
     food:containsIngredient food:Pasta , food:Tomato , food:Garlic , food:OliveOil ;
-    food:hasRecommendedWine vin:ChiantiClassico ,
-                            vin:ChateauMorgonBeaujolais ;
+    food:hasFatness food:LowFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:HighSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "true"^^xsd:boolean .
 
 food:Ravioli a owl:NamedIndividual , food:Dish ;
     rdfs:label "Cheese Ravioli"@en ,
                "Ravióli de Queijo"@pt ;
-    food:hasFoodCategory vin:Pasta , vin:Cheese ;
     food:containsIngredient food:Pasta , food:Ricotta , food:Parmesan ;
-    food:hasRecommendedWine vin:GaryFarrellMerlot ,
-                            vin:LaneTannerPinotNoir ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:HighSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
@@ -302,40 +344,48 @@ food:Ravioli a owl:NamedIndividual , food:Dish ;
 food:CheesePlate a owl:NamedIndividual , food:Dish ;
     rdfs:label "Cheese Plate"@en ,
                "Tábua de Queijos"@pt ;
-    food:hasFoodCategory vin:Cheese ;
     food:containsIngredient food:Parmesan , food:Mozzarella ;
-    food:hasRecommendedWine vin:TaylorPort ,
-                            vin:ChateauDYchemSauterne ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:HighSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Brie a owl:NamedIndividual , food:Dish ;
     rdfs:label "Baked Brie"@en ,
                "Brie Assado"@pt ;
-    food:hasFoodCategory vin:Cheese ;
     food:containsIngredient food:BrieCheese ;
-    food:hasRecommendedWine vin:CortonMontrachetWhiteBurgundy ,
-                            vin:PulignyMontrachetWhiteBurgundy ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:MediumSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:BlueCheese a owl:NamedIndividual , food:Dish ;
     rdfs:label "Blue Cheese Selection"@en ,
                "Seleção de Queijos Azuis"@pt ;
-    food:hasFoodCategory vin:Cheese ;
     food:containsIngredient food:BlueCheeseIngredient ;
-    food:hasRecommendedWine vin:SchlossRothermelTrochenbierenausleseRiesling ,
-                            vin:ChateauDYchemSauterne ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:HighSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Gouda a owl:NamedIndividual , food:Dish ;
     rdfs:label "Aged Gouda"@en ,
                "Gouda Curado"@pt ;
-    food:hasFoodCategory vin:Cheese ;
     food:containsIngredient food:GoudaCheese ;
-    food:hasRecommendedWine vin:MariettaCabernetSauvignon ,
-                            vin:TaylorPort ;
+    food:hasFatness food:HighFat ;
+    food:hasSaltiness food:HighSaltiness ;
+    food:hasSweetness food:LowSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:HighUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
@@ -346,46 +396,58 @@ food:Gouda a owl:NamedIndividual , food:Dish ;
 food:ChocolateCake a owl:NamedIndividual , food:Dish ;
     rdfs:label "Chocolate Cake"@en ,
                "Bolo de Chocolate"@pt ;
-    food:hasFoodCategory vin:Dessert ;
     food:containsIngredient food:Chocolate , food:Vanilla ;
-    food:hasRecommendedWine vin:TaylorPort ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:HighSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:LowUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:CremeBrulee a owl:NamedIndividual , food:Dish ;
     rdfs:label "Crème Brûlée"@en ,
                "Crème Brûlée"@pt ;
-    food:hasFoodCategory vin:Dessert ;
     food:containsIngredient food:Cream , food:Vanilla ;
-    food:hasRecommendedWine vin:WhitehallLanePrimavera ,
-                            vin:SelaksIceWine ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:HighSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:LowUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:FruitTart a owl:NamedIndividual , food:Dish ;
     rdfs:label "Fresh Fruit Tart"@en ,
                "Torta de Frutas"@pt ;
-    food:hasFoodCategory vin:Dessert ;
-    food:hasRecommendedWine vin:SchlossVolradTrochenbierenausleseRiesling ,
-                            vin:SelaksIceWine ;
+    food:hasFatness food:LowFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:HighSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:LowUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:Tiramisu a owl:NamedIndividual , food:Dish ;
     rdfs:label "Tiramisu"@en ,
                "Tiramisu"@pt ;
-    food:hasFoodCategory vin:Dessert , vin:Cheese ;
     food:containsIngredient food:Mascarpone , food:Chocolate , food:Cream ;
-    food:hasRecommendedWine vin:SchlossRothermelTrochenbierenausleseRiesling ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:HighSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:MediumUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 
 food:ApplePie a owl:NamedIndividual , food:Dish ;
     rdfs:label "Apple Pie"@en ,
                "Torta de Maçã"@pt ;
-    food:hasFoodCategory vin:Dessert ;
-    food:hasRecommendedWine vin:SchlossVolradTrochenbierenausleseRiesling ,
-                            vin:WhitehallLanePrimavera ;
+    food:hasFatness food:MediumFat ;
+    food:hasSaltiness food:LowSaltiness ;
+    food:hasSweetness food:HighSweetness ;
+    food:hasSpiciness food:LowSpiciness ;
+    food:hasUmami food:LowUmami ;
     food:isVegetarian "true"^^xsd:boolean ;
     food:isVegan "false"^^xsd:boolean .
 

@@ -56,22 +56,6 @@
   <!-- Object Properties                              -->
   <!-- ============================================== -->
 
-  <owl:ObjectProperty rdf:ID="hasFoodCategory">
-    <rdfs:domain rdf:resource="#Dish"/>
-    <rdfs:range rdf:resource="&vin;FoodCategory"/>
-    <rdfs:label xml:lang="en">has food category</rdfs:label>
-    <rdfs:label xml:lang="pt">tem categoria de comida</rdfs:label>
-    <rdfs:comment>Links a dish to its food category for wine pairing</rdfs:comment>
-  </owl:ObjectProperty>
-
-  <owl:ObjectProperty rdf:ID="hasRecommendedWine">
-    <rdfs:domain rdf:resource="#Dish"/>
-    <rdfs:range rdf:resource="&vin;Wine"/>
-    <rdfs:label xml:lang="en">has recommended wine</rdfs:label>
-    <rdfs:label xml:lang="pt">tem vinho recomendado</rdfs:label>
-    <rdfs:comment>Specific wine recommendation for this dish</rdfs:comment>
-  </owl:ObjectProperty>
-
   <owl:ObjectProperty rdf:ID="containsIngredient">
     <rdfs:domain rdf:resource="#Dish"/>
     <rdfs:range rdf:resource="#Ingredient"/>
@@ -133,5 +117,311 @@
     <rdfs:label xml:lang="en">is vegan</rdfs:label>
     <rdfs:label xml:lang="pt">é vegano</rdfs:label>
   </owl:DatatypeProperty>
+
+  <!-- ============================================== -->
+  <!-- Food Sensory Properties                        -->
+  <!-- ============================================== -->
+
+  <owl:Class rdf:ID="FoodSensoryProperty">
+    <rdfs:label xml:lang="en">food sensory property</rdfs:label>
+    <rdfs:label xml:lang="pt">propriedade sensorial da comida</rdfs:label>
+    <rdfs:comment>Class representing sensory characteristics of food (sweetness, saltiness, acidity, umami, bitterness)</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:ID="SweetnessLevel">
+    <rdfs:subClassOf rdf:resource="#FoodSensoryProperty"/>
+    <rdfs:label xml:lang="en">sweetness level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de doçura</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="SaltinessLevel">
+    <rdfs:subClassOf rdf:resource="#FoodSensoryProperty"/>
+    <rdfs:label xml:lang="en">saltiness level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de salinidade</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="AcidityLevel">
+    <rdfs:subClassOf rdf:resource="#FoodSensoryProperty"/>
+    <rdfs:label xml:lang="en">acidity level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de acidez</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="UmamiLevel">
+    <rdfs:subClassOf rdf:resource="#FoodSensoryProperty"/>
+    <rdfs:label xml:lang="en">umami level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de umami</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="BitternessLevel">
+    <rdfs:subClassOf rdf:resource="#FoodSensoryProperty"/>
+    <rdfs:label xml:lang="en">bitterness level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de amargor</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="FatnessLevel">
+    <rdfs:subClassOf rdf:resource="#FoodSensoryProperty"/>
+    <rdfs:label xml:lang="en">fatness level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de gordura</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="SpicinessLevel">
+    <rdfs:subClassOf rdf:resource="#FoodSensoryProperty"/>
+    <rdfs:label xml:lang="en">spiciness level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de picância</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="SmokinessLevel">
+    <rdfs:subClassOf rdf:resource="#FoodSensoryProperty"/>
+    <rdfs:label xml:lang="en">smokiness level</rdfs:label>
+    <rdfs:label xml:lang="pt">nível de defumação</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Texture">
+    <rdfs:subClassOf rdf:resource="#FoodSensoryProperty"/>
+    <rdfs:label xml:lang="en">texture</rdfs:label>
+    <rdfs:label xml:lang="pt">textura</rdfs:label>
+  </owl:Class>
+
+  <!-- Level Instances (Low, Medium, High) -->
+  <!-- Sweetness -->
+  <owl:NamedIndividual rdf:ID="LowSweetness">
+    <rdf:type rdf:resource="#SweetnessLevel"/>
+    <rdfs:label xml:lang="en">low sweetness</rdfs:label>
+    <rdfs:label xml:lang="pt">baixa doçura</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumSweetness">
+    <rdf:type rdf:resource="#SweetnessLevel"/>
+    <rdfs:label xml:lang="en">medium sweetness</rdfs:label>
+    <rdfs:label xml:lang="pt">doçura média</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighSweetness">
+    <rdf:type rdf:resource="#SweetnessLevel"/>
+    <rdfs:label xml:lang="en">high sweetness</rdfs:label>
+    <rdfs:label xml:lang="pt">alta doçura</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Saltiness -->
+  <owl:NamedIndividual rdf:ID="LowSaltiness">
+    <rdf:type rdf:resource="#SaltinessLevel"/>
+    <rdfs:label xml:lang="en">low saltiness</rdfs:label>
+    <rdfs:label xml:lang="pt">baixa salinidade</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumSaltiness">
+    <rdf:type rdf:resource="#SaltinessLevel"/>
+    <rdfs:label xml:lang="en">medium saltiness</rdfs:label>
+    <rdfs:label xml:lang="pt">salinidade média</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighSaltiness">
+    <rdf:type rdf:resource="#SaltinessLevel"/>
+    <rdfs:label xml:lang="en">high saltiness</rdfs:label>
+    <rdfs:label xml:lang="pt">alta salinidade</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Acidity -->
+  <owl:NamedIndividual rdf:ID="LowFoodAcidity">
+    <rdf:type rdf:resource="#AcidityLevel"/>
+    <rdfs:label xml:lang="en">low acidity</rdfs:label>
+    <rdfs:label xml:lang="pt">baixa acidez</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumFoodAcidity">
+    <rdf:type rdf:resource="#AcidityLevel"/>
+    <rdfs:label xml:lang="en">medium acidity</rdfs:label>
+    <rdfs:label xml:lang="pt">acidez média</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighFoodAcidity">
+    <rdf:type rdf:resource="#AcidityLevel"/>
+    <rdfs:label xml:lang="en">high acidity</rdfs:label>
+    <rdfs:label xml:lang="pt">alta acidez</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Umami -->
+  <owl:NamedIndividual rdf:ID="LowUmami">
+    <rdf:type rdf:resource="#UmamiLevel"/>
+    <rdfs:label xml:lang="en">low umami</rdfs:label>
+    <rdfs:label xml:lang="pt">baixo umami</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumUmami">
+    <rdf:type rdf:resource="#UmamiLevel"/>
+    <rdfs:label xml:lang="en">medium umami</rdfs:label>
+    <rdfs:label xml:lang="pt">umami médio</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighUmami">
+    <rdf:type rdf:resource="#UmamiLevel"/>
+    <rdfs:label xml:lang="en">high umami</rdfs:label>
+    <rdfs:label xml:lang="pt">alto umami</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Bitterness -->
+  <owl:NamedIndividual rdf:ID="LowBitterness">
+    <rdf:type rdf:resource="#BitternessLevel"/>
+    <rdfs:label xml:lang="en">low bitterness</rdfs:label>
+    <rdfs:label xml:lang="pt">baixo amargor</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumBitterness">
+    <rdf:type rdf:resource="#BitternessLevel"/>
+    <rdfs:label xml:lang="en">medium bitterness</rdfs:label>
+    <rdfs:label xml:lang="pt">amargor médio</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighBitterness">
+    <rdf:type rdf:resource="#BitternessLevel"/>
+    <rdfs:label xml:lang="en">high bitterness</rdfs:label>
+    <rdfs:label xml:lang="pt">alto amargor</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Fatness -->
+  <owl:NamedIndividual rdf:ID="LowFat">
+    <rdf:type rdf:resource="#FatnessLevel"/>
+    <rdfs:label xml:lang="en">low fat</rdfs:label>
+    <rdfs:label xml:lang="pt">baixa gordura</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumFat">
+    <rdf:type rdf:resource="#FatnessLevel"/>
+    <rdfs:label xml:lang="en">medium fat</rdfs:label>
+    <rdfs:label xml:lang="pt">gordura média</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighFat">
+    <rdf:type rdf:resource="#FatnessLevel"/>
+    <rdfs:label xml:lang="en">high fat</rdfs:label>
+    <rdfs:label xml:lang="pt">alta gordura</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Spiciness -->
+  <owl:NamedIndividual rdf:ID="LowSpiciness">
+    <rdf:type rdf:resource="#SpicinessLevel"/>
+    <rdfs:label xml:lang="en">low spiciness</rdfs:label>
+    <rdfs:label xml:lang="pt">baixa picância</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumSpiciness">
+    <rdf:type rdf:resource="#SpicinessLevel"/>
+    <rdfs:label xml:lang="en">medium spiciness</rdfs:label>
+    <rdfs:label xml:lang="pt">picância média</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighSpiciness">
+    <rdf:type rdf:resource="#SpicinessLevel"/>
+    <rdfs:label xml:lang="en">high spiciness</rdfs:label>
+    <rdfs:label xml:lang="pt">alta picância</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Smokiness -->
+  <owl:NamedIndividual rdf:ID="LowSmoke">
+    <rdf:type rdf:resource="#SmokinessLevel"/>
+    <rdfs:label xml:lang="en">low smokiness</rdfs:label>
+    <rdfs:label xml:lang="pt">baixa defumação</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="MediumSmoke">
+    <rdf:type rdf:resource="#SmokinessLevel"/>
+    <rdfs:label xml:lang="en">medium smokiness</rdfs:label>
+    <rdfs:label xml:lang="pt">defumação média</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="HighSmoke">
+    <rdf:type rdf:resource="#SmokinessLevel"/>
+    <rdfs:label xml:lang="en">high smokiness</rdfs:label>
+    <rdfs:label xml:lang="pt">alta defumação</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Texture -->
+  <owl:NamedIndividual rdf:ID="CrispyTexture">
+    <rdf:type rdf:resource="#Texture"/>
+    <rdfs:label xml:lang="en">crispy</rdfs:label>
+    <rdfs:label xml:lang="pt">crocante</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="CreamyTexture">
+    <rdf:type rdf:resource="#Texture"/>
+    <rdfs:label xml:lang="en">creamy</rdfs:label>
+    <rdfs:label xml:lang="pt">cremoso</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="ChewyTexture">
+    <rdf:type rdf:resource="#Texture"/>
+    <rdfs:label xml:lang="en">chewy</rdfs:label>
+    <rdfs:label xml:lang="pt">mastigável</rdfs:label>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:ID="TenderTexture">
+    <rdf:type rdf:resource="#Texture"/>
+    <rdfs:label xml:lang="en">tender</rdfs:label>
+    <rdfs:label xml:lang="pt">macio</rdfs:label>
+  </owl:NamedIndividual>
+
+  <!-- Object Properties -->
+  <owl:ObjectProperty rdf:ID="hasSweetness">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#SweetnessLevel"/>
+    <rdfs:label xml:lang="en">has sweetness</rdfs:label>
+    <rdfs:label xml:lang="pt">tem doçura</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasSaltiness">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#SaltinessLevel"/>
+    <rdfs:label xml:lang="en">has saltiness</rdfs:label>
+    <rdfs:label xml:lang="pt">tem salinidade</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasAcidity">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#AcidityLevel"/>
+    <rdfs:label xml:lang="en">has acidity</rdfs:label>
+    <rdfs:label xml:lang="pt">tem acidez</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasUmami">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#UmamiLevel"/>
+    <rdfs:label xml:lang="en">has umami</rdfs:label>
+    <rdfs:label xml:lang="pt">tem umami</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasBitterness">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#BitternessLevel"/>
+    <rdfs:label xml:lang="en">has bitterness</rdfs:label>
+    <rdfs:label xml:lang="pt">tem amargor</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasFatness">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#FatnessLevel"/>
+    <rdfs:label xml:lang="en">has fatness</rdfs:label>
+    <rdfs:label xml:lang="pt">tem gordura</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasSpiciness">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#SpicinessLevel"/>
+    <rdfs:label xml:lang="en">has spiciness</rdfs:label>
+    <rdfs:label xml:lang="pt">tem picância</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasSmokiness">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#SmokinessLevel"/>
+    <rdfs:label xml:lang="en">has smokiness</rdfs:label>
+    <rdfs:label xml:lang="pt">tem defumação</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasTexture">
+    <rdfs:domain rdf:resource="#Dish"/>
+    <rdfs:range rdf:resource="#Texture"/>
+    <rdfs:label xml:lang="en">has texture</rdfs:label>
+    <rdfs:label xml:lang="pt">tem textura</rdfs:label>
+  </owl:ObjectProperty>
 
 </rdf:RDF>

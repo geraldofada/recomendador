@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SWRL Rules for Wine-Food Pairing Recommendations -->
+<!-- Semantic Web Rule Language (SWRL) -->
+<!-- Rules are based on established wine-food pairing principles -->
+
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+  xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+  xmlns:vin="http://uff.ic.br/ontologias/recomendador/wine/"
+  xmlns:food="http://uff.ic.br/ontologias/recomendador/food/"
+  xmlns:rec="http://uff.ic.br/ontologias/recomendador/recommendation/">
+
+  <owl:Ontology rdf:about="http://uff.ic.br/ontologias/recomendador/pairing-rules">
+    <rdfs:label>Wine-Food Pairing SWRL Rules</rdfs:label>
+    <rdfs:comment>SWRL rules for inferring wine-food pairings based on structural and sensory properties</rdfs:comment>
+    <owl:versionInfo>1.0.0</owl:versionInfo>
+  </owl:Ontology>
+
+  <!-- ============================================== -->
+  <!-- Rule 1: High acidity wine pairs with high fat food -->
+  <!-- Principle: Acidity cuts through fat, cleansing the palate -->
+  <!-- ============================================== -->
+  <swrl:Imp>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:PropertyPredicate rdf:resource="vin:hasAcidity"/>
+                <swrl:Argument1 rdf:resource="swrl#w"/>
+                <swrl:Argument2 rdf:resource="vin:HighAcidity"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:first>
+                  <swrl:ClassAtom>
+                    <swrl:ClassPredicate rdf:resource="food:Dish"/>
+                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                  </swrl:ClassAtom>
+                </rdf:first>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:first>
+                      <swrl:IndividualPropertyAtom>
+                        <swrl:PropertyPredicate rdf:resource="food:hasFatness"/>
+                        <swrl:Argument1 rdf:resource="swrl#f"/>
+                        <swrl:Argument2 rdf:resource="food:HighFat"/>
+                      </swrl:IndividualPropertyAtom>
+                    </rdf:first>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  </swrl:AtomList>
+                </rdf:rest>
+              </swrl:AtomList>
+            </rdf:rest>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:Argument2 rdf:resource="swrl#f"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
+  </swrl:Imp>
+
+  <!-- ============================================== -->
+  <!-- Rule 2: Sweet wine pairs with sweet food -->
+  <!-- Principle: Wine should be as sweet as or sweeter than the food -->
+  <!-- ============================================== -->
+  <swrl:Imp>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:PropertyPredicate rdf:resource="vin:hasSugar"/>
+                <swrl:Argument1 rdf:resource="swrl#w"/>
+                <swrl:Argument2 rdf:resource="vin:Sweet"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:first>
+                  <swrl:ClassAtom>
+                    <swrl:ClassPredicate rdf:resource="food:Dish"/>
+                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                  </swrl:ClassAtom>
+                </rdf:first>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:first>
+                      <swrl:IndividualPropertyAtom>
+                        <swrl:PropertyPredicate rdf:resource="food:hasSweetness"/>
+                        <swrl:Argument1 rdf:resource="swrl#f"/>
+                        <swrl:Argument2 rdf:resource="food:HighSweetness"/>
+                      </swrl:IndividualPropertyAtom>
+                    </rdf:first>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  </swrl:AtomList>
+                </rdf:rest>
+              </swrl:AtomList>
+            </rdf:rest>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:Argument2 rdf:resource="swrl#f"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
+  </swrl:Imp>
+
+  <!-- ============================================== -->
+  <!-- Rule 3: Tannic wine pairs with salty food -->
+  <!-- Principle: Salt softens tannins, making the wine smoother -->
+  <!-- ============================================== -->
+  <swrl:Imp>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:PropertyPredicate rdf:resource="vin:hasTannin"/>
+                <swrl:Argument1 rdf:resource="swrl#w"/>
+                <swrl:Argument2 rdf:resource="vin:HighTannin"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:first>
+                  <swrl:ClassAtom>
+                    <swrl:ClassPredicate rdf:resource="food:Dish"/>
+                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                  </swrl:ClassAtom>
+                </rdf:first>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:first>
+                      <swrl:IndividualPropertyAtom>
+                        <swrl:PropertyPredicate rdf:resource="food:hasSaltiness"/>
+                        <swrl:Argument1 rdf:resource="swrl#f"/>
+                        <swrl:Argument2 rdf:resource="food:HighSaltiness"/>
+                      </swrl:IndividualPropertyAtom>
+                    </rdf:first>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  </swrl:AtomList>
+                </rdf:rest>
+              </swrl:AtomList>
+            </rdf:rest>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:Argument2 rdf:resource="swrl#f"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
+  </swrl:Imp>
+
+  <!-- ============================================== -->
+  <!-- Rule 4: Light body wine pairs with light texture food -->
+  <!-- Principle: Body of wine should match the weight of the food -->
+  <!-- ============================================== -->
+  <swrl:Imp>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:PropertyPredicate rdf:resource="vin:hasBody"/>
+                <swrl:Argument1 rdf:resource="swrl#w"/>
+                <swrl:Argument2 rdf:resource="vin:Light"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:first>
+                  <swrl:ClassAtom>
+                    <swrl:ClassPredicate rdf:resource="food:Dish"/>
+                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                  </swrl:ClassAtom>
+                </rdf:first>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:first>
+                      <swrl:IndividualPropertyAtom>
+                        <swrl:PropertyPredicate rdf:resource="food:hasTexture"/>
+                        <swrl:Argument1 rdf:resource="swrl#f"/>
+                        <swrl:Argument2 rdf:resource="food:TenderTexture"/>
+                      </swrl:IndividualPropertyAtom>
+                    </rdf:first>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  </swrl:AtomList>
+                </rdf:rest>
+              </swrl:AtomList>
+            </rdf:rest>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:Argument2 rdf:resource="swrl#f"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
+  </swrl:Imp>
+
+  <!-- ============================================== -->
+  <!-- Rule 5: Low alcohol wine with slightly sweet pairs with spicy food -->
+  <!-- Principle: Low alcohol and hint of sweetness balance spicy heat -->
+  <!-- ============================================== -->
+  <swrl:Imp>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:PropertyPredicate rdf:resource="vin:hasAlcohol"/>
+                <swrl:Argument1 rdf:resource="swrl#w"/>
+                <swrl:Argument2 rdf:resource="vin:LowAlcohol"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:PropertyPredicate rdf:resource="vin:hasSugar"/>
+                    <swrl:Argument1 rdf:resource="swrl#w"/>
+                    <swrl:Argument2 rdf:resource="vin:OffDry"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:first>
+                      <swrl:ClassAtom>
+                        <swrl:ClassPredicate rdf:resource="food:Dish"/>
+                        <swrl:Argument1 rdf:resource="swrl#f"/>
+                      </swrl:ClassAtom>
+                    </rdf:first>
+                    <rdf:rest>
+                      <swrl:AtomList>
+                        <rdf:first>
+                          <swrl:IndividualPropertyAtom>
+                            <swrl:PropertyPredicate rdf:resource="food:hasSpiciness"/>
+                            <swrl:Argument1 rdf:resource="swrl#f"/>
+                            <swrl:Argument2 rdf:resource="food:HighSpiciness"/>
+                          </swrl:IndividualPropertyAtom>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                      </swrl:AtomList>
+                    </rdf:rest>
+                  </swrl:AtomList>
+                </rdf:rest>
+              </swrl:AtomList>
+            </rdf:rest>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:Argument2 rdf:resource="swrl#f"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
+  </swrl:Imp>
+
+  <!-- ============================================== -->
+  <!-- Rule 6: High umami food pairs with red wine -->
+  <!-- Principle: Umami-rich foods (meats, aged cheeses) go well with red wines -->
+  <!-- ============================================== -->
+  <swrl:Imp>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:ClassPredicate rdf:resource="vin:RedWine"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:ClassPredicate rdf:resource="food:Dish"/>
+                <swrl:Argument1 rdf:resource="swrl#f"/>
+              </swrl:ClassAtom>
+            </rdf:first>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:PropertyPredicate rdf:resource="food:hasUmami"/>
+                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                    <swrl:Argument2 rdf:resource="food:HighUmami"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+              </swrl:AtomList>
+            </rdf:rest>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:Argument2 rdf:resource="swrl#f"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
+  </swrl:Imp>
+
+  <!-- ============================================== -->
+  <!-- Rule 7: Avoid pairing: High tannin + High bitterness -->
+  <!-- Principle: Bitter + Bitter = Unpleasant -->
+  <!-- ============================================== -->
+  <swrl:Imp>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:PropertyPredicate rdf:resource="vin:hasTannin"/>
+                <swrl:Argument1 rdf:resource="swrl#w"/>
+                <swrl:Argument2 rdf:resource="vin:HighTannin"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:first>
+                  <swrl:ClassAtom>
+                    <swrl:ClassPredicate rdf:resource="food:Dish"/>
+                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                  </swrl:ClassAtom>
+                </rdf:first>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:first>
+                      <swrl:IndividualPropertyAtom>
+                        <swrl:PropertyPredicate rdf:resource="food:hasBitterness"/>
+                        <swrl:Argument1 rdf:resource="swrl#f"/>
+                        <swrl:Argument2 rdf:resource="food:HighBitterness"/>
+                      </swrl:IndividualPropertyAtom>
+                    </rdf:first>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  </swrl:AtomList>
+                </rdf:rest>
+              </swrl:AtomList>
+            </rdf:rest>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:PropertyPredicate rdf:resource="rec:notRecommended"/>
+            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:Argument2 rdf:resource="swrl#f"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
+  </swrl:Imp>
+
+</rdf:RDF>

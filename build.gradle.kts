@@ -35,6 +35,11 @@ dependencies {
 	implementation("org.apache.jena:jena-arq:5.4.0")
 	implementation("org.apache.jena:jena-ontapi:5.4.0")
 	
+	// OWL API + HermiT Reasoner
+	implementation("net.sourceforge.owlapi:org.semanticweb.hermit:1.3.8.413")
+	implementation("net.sourceforge.owlapi:owlapi-api:5.1.20")
+	implementation("net.sourceforge.owlapi:owlapi-rio:5.1.20")
+	
 	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter-test")
