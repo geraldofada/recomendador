@@ -1,5 +1,6 @@
 package br.uff.ic.recomendador.config
 
+import openllet.jena.PelletReasonerFactory
 import org.apache.jena.ontology.OntDocumentManager
 import org.apache.jena.ontology.OntModel
 import org.apache.jena.ontology.OntModelSpec
@@ -126,10 +127,17 @@ class ReasonerConfig {
         return jenaModel
     }
 
-        println("=== Ontology Model Loaded ===")
-        println("Ready for SPARQL queries")
+    private fun buildPelletModel(): OntModel {
+        val docManager = OntDocumentManager()
+        docManager.setCacheModels(false)
+        docManager.reset()
 
-        return model
+        val spec = OntModelSpec(OntModelSpec.OWL_MEM)
+        spec.documentManager = docManager
+        spec.reasoner = PelletReasonerFactory.theInstance().create()
+
+        return ModelFactory.createOntologyModel(spec).also { loadOntologiesIntoJena(it) }
+    }
 
     private fun loadOntologiesIntoJena(model: OntModel) {
         model.read(wineSchemaResource.inputStream, "http://uff.ic.br/ontologias/recomendador/wine/", "RDF/XML")
