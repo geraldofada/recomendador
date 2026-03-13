@@ -74,26 +74,57 @@ class ReasonerConfig {
         return ModelFactory.createOntologyModel(spec).also { loadOntologiesIntoJena(it) }
     }
 
-        val model = ModelFactory.createOntologyModel(spec)
+    private fun buildHermiTModel(): OntModel {
+        // 1. Load all ontology files with OWL API into a single merged ontology
+        val manager = OWLManager.createOWLOntologyManager()
+        val merged = manager.createOntology(IRI.create("http://uff.ic.br/ontologias/recomendador/merged"))
 
-        wineSchemaResource.inputStream.use { inputStream ->
-            model.read(inputStream, "http://uff.ic.br/ontologias/recomendador/wine/", "RDF/XML")
+        listOf(
+            wineSchemaResource to "urn:wine-schema",
+            wineInstancesResource to "urn:wine-instances",
+            foodSchemaResource to "urn:food-schema",
+            foodInstancesResource to "urn:food-instances",
+            recommendationSchemaResource to "urn:recommendation-schema",
+            recommendationInstancesResource to "urn:recommendation-instances",
+        ).forEach { (resource, urn) ->
+            resource.inputStream.use { stream ->
+                val source = StreamDocumentSource(stream, IRI.create(urn))
+                val loaded = manager.loadOntologyFromOntologyDocument(source)
+                for (axiom in loaded.axioms) {
+                    manager.addAxiom(merged, axiom)
+                }
+            }
         }
-        wineInstancesResource.inputStream.use { inputStream ->
-            model.read(inputStream, "http://uff.ic.br/ontologias/recomendador/wine/", "TURTLE")
+
+        // 2. Run HermiT and precompute inferences
+        val hermit = ReasonerFactory().createReasoner(merged)
+        hermit.precomputeInferences(
+            InferenceType.CLASS_HIERARCHY,
+            InferenceType.CLASS_ASSERTIONS,
+            InferenceType.OBJECT_PROPERTY_ASSERTIONS
+        )
+
+        // 3. Materialize inferred axioms into the merged ontology
+        val generators = listOf(
+            InferredSubClassAxiomGenerator(),
+            InferredClassAssertionAxiomGenerator(),
+            InferredPropertyAssertionGenerator()
+        )
+        val inferredOntology = manager.createOntology()
+        InferredOntologyGenerator(hermit, generators).fillOntology(manager.owlDataFactory, inferredOntology)
+        for (axiom in inferredOntology.axioms) {
+            manager.addAxiom(merged, axiom)
         }
-        foodSchemaResource.inputStream.use { inputStream ->
-            model.read(inputStream, "http://uff.ic.br/ontologias/recomendador/food/", "RDF/XML")
-        }
-        foodInstancesResource.inputStream.use { inputStream ->
-            model.read(inputStream, "http://uff.ic.br/ontologias/recomendador/food/", "TURTLE")
-        }
-        recommendationSchemaResource.inputStream.use { inputStream ->
-            model.read(inputStream, "http://uff.ic.br/ontologias/recomendador/recommendation/", "RDF/XML")
-        }
-        recommendationInstancesResource.inputStream.use { inputStream ->
-            model.read(inputStream, "http://uff.ic.br/ontologias/recomendador/recommendation/", "TURTLE")
-        }
+        hermit.dispose()
+
+        // 4. Serialize merged+inferred ontology and load into Jena model (no additional reasoner needed)
+        val output = ByteArrayOutputStream()
+        manager.saveOntology(merged, TurtleDocumentFormat(), output)
+
+        val jenaModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM)
+        jenaModel.read(ByteArrayInputStream(output.toByteArray()), null, "TURTLE")
+        return jenaModel
+    }
 
         println("=== Ontology Model Loaded ===")
         println("Ready for SPARQL queries")
