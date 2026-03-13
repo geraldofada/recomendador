@@ -36,9 +36,17 @@ dependencies {
 	implementation("org.apache.jena:jena-ontapi:5.4.0")
 	
 	// OWL API + HermiT Reasoner
-	implementation("net.sourceforge.owlapi:org.semanticweb.hermit:1.3.8.413")
-	implementation("net.sourceforge.owlapi:owlapi-api:5.1.20")
-	implementation("net.sourceforge.owlapi:owlapi-rio:5.1.20")
+	// Exclude owlapi-distribution:4.1.3 (HermiT's transitive dep) to avoid version conflict
+	// with owlapi 4.5.26 modular jars — mixing both causes ServiceLoader failures at runtime.
+	implementation("net.sourceforge.owlapi:org.semanticweb.hermit:1.3.8.413") {
+		exclude(group = "net.sourceforge.owlapi", module = "owlapi-distribution")
+	}
+	implementation("net.sourceforge.owlapi:owlapi-api:4.5.26")
+	implementation("net.sourceforge.owlapi:owlapi-apibinding:4.5.26")
+	implementation("net.sourceforge.owlapi:owlapi-rio:4.5.26")
+
+	// Openllet (Pellet fork with Jena integration)
+	implementation("com.github.galigator.openllet:openllet-jena:2.6.5")
 	
 	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -67,6 +75,16 @@ tasks.generateJava {
     )
 }
 
+// HermiT uses owlapi-distribution 4.1.3 which depends on Guice 4.0 + CGLIB.
+// Guice 4.0's CGLIB requires reflective access to ClassLoader.defineClass,
+// which is blocked by the Java 9+ module system. This opens it for Java 21.
+val javaOpenArgs = listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED")
+
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
+    jvmArgs(javaOpenArgs)
+}
+
 tasks.withType<Test> {
+    jvmArgs(javaOpenArgs)
 	useJUnitPlatform()
 }
