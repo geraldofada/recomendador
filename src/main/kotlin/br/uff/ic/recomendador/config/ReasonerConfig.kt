@@ -43,6 +43,9 @@ class ReasonerConfig {
     @Value("classpath:ontologies/recommendation/recommendation-instances.ttl")
     private lateinit var recommendationInstancesResource: Resource
 
+    @Value("classpath:ontologies/pairing-rules.swrl")
+    private lateinit var pairingRulesResource: Resource
+
     @Value("\${reasoner.type:JENA_OWL}")
     private lateinit var reasonerTypeName: String
 
@@ -85,6 +88,7 @@ class ReasonerConfig {
             foodInstancesResource to "urn:food-instances",
             recommendationSchemaResource to "urn:recommendation-schema",
             recommendationInstancesResource to "urn:recommendation-instances",
+            pairingRulesResource to "urn:pairing-rules",
         ).forEach { (resource, urn) ->
             resource.inputStream.use { stream ->
                 val source = StreamDocumentSource(stream, IRI.create(urn))
