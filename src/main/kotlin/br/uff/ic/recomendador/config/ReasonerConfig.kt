@@ -125,7 +125,7 @@ class ReasonerConfig {
         }
         hermit.dispose()
 
-        // 4. Serialize merged+inferred ontology and load into Jena model (no additional reasoner needed)
+        // 4. Serialize merged+inferred ontology and load into Jena model
         val output = ByteArrayOutputStream()
         manager.saveOntology(merged, TurtleDocumentFormat(), output)
 
@@ -136,6 +136,32 @@ class ReasonerConfig {
         applyJenaPairingRules(jenaModel)
 
         return jenaModel
+    }
+
+    private fun applyJenaPairingRules(model: OntModel) {
+        val rules = pairingRulesResource.inputStream.bufferedReader().use { reader ->
+            Rule.parseRules(Rule.rulesParserFromReader(reader))
+        }
+
+        // Use baseModel to bypass OntModel's union-graph wrapper and expose raw triples to the rule engine
+        val baseModel = model.baseModel
+        println("=== [JenaRules] Base model size: ${baseModel.size()} triples ===")
+
+        val reasoner = GenericRuleReasoner(rules)
+        reasoner.setMode(GenericRuleReasoner.FORWARD_RETE)
+        val infModel = ModelFactory.createInfModel(reasoner, baseModel)
+
+        // Materialize only the pairing-specific properties back into the OntModel
+        val recNS = "http://uff.ic.br/ontologias/recomendador/recommendation/"
+        listOf("recommendsPairing", "notRecommended").forEach { propName ->
+            val prop = infModel.createProperty("$recNS$propName")
+            infModel.listStatements(null, prop, null as RDFNode?).toList()
+                .forEach { stmt -> model.add(stmt) }
+        }
+
+        println("=== [JenaRules] Applied pairing rules: ${
+            model.listStatements(null, model.createProperty("${recNS}recommendsPairing"), null as RDFNode?).toList().size
+        } recommendsPairing triples ===")
     }
 
     private fun loadOntologiesIntoJena(model: OntModel) {
