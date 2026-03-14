@@ -1,61 +1,208 @@
 # Wine-Food Pairing Rules — Jena Rules syntax
-# Executed by Jena's GenericRuleReasoner (FORWARD_RETE) after HermiT OWL inference
+# Sources: Karen MacNeil (The Wine Bible), Jancis Robinson, Wine Folly,
+#          Guild of Sommeliers, Kevin Zraly (Windows on the World)
 #
-# Class membership checks are omitted intentionally:
-#   - any subject with vin:hasAcidity is a wine individual
-#   - any subject with food:hasFatness is a food individual
-# This avoids dependency on rdf:type materialization.
+# Executed by Jena's GenericRuleReasoner (FORWARD_RETE) after HermiT OWL inference.
+# Class membership checks are omitted: property presence implies class membership.
+# Rule 6 (RedWine) uses rdf:type materialized by HermiT's InferredClassAssertionAxiomGenerator.
 
 @prefix vin:  <http://uff.ic.br/ontologias/recomendador/wine/> .
 @prefix food: <http://uff.ic.br/ontologias/recomendador/food/> .
 @prefix rec:  <http://uff.ic.br/ontologias/recomendador/recommendation/> .
 
-# Rule 1: High acidity cuts through fat — acidity cleanses a fatty palate
+# ==============================================================
+# POSITIVE PAIRINGS — rec:recommendsPairing
+# ==============================================================
+
+# Rule 1: High acidity + high fat food → RECOMMEND
+# Principle (MacNeil / Guild of Sommeliers): Acidity acts as a palate cleanser,
+# cutting through the richness of fatty foods and refreshing the mouth between bites.
+# Classic: Sauvignon Blanc with cream sauces, Champagne with fried food.
 [rule1_acidityFat:
     (?w vin:hasAcidity vin:HighAcidity)
     (?f food:hasFatness food:HighFat)
     -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 2: Sweet wine with sweet food — wine must be at least as sweet as the dish
-[rule2_sweetSweet:
-    (?w vin:hasSugar vin:Sweet)
-    (?f food:hasSweetness food:HighSweetness)
+# Rule 2: High acidity + salty food → RECOMMEND
+# Principle (Jancis Robinson / Guild of Sommeliers): Salt suppresses bitterness and
+# enhances fruitiness in high-acid wines. Acid + salt creates a refreshing, lively pairing.
+# Classic: Muscadet with oysters, Chablis with briny seafood.
+[rule2_aciditySalt:
+    (?w vin:hasAcidity vin:HighAcidity)
+    (?f food:hasSaltiness food:HighSaltiness)
     -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 3: Tannin softened by salt — salt reduces the astringency of tannins
-[rule3_tanninSalt:
+# Rule 3: High tannin + high fat food → RECOMMEND
+# Principle (MacNeil / Guild of Sommeliers): Fat binds to tannin molecules and coats
+# the palate, making harsh tannins feel smooth and integrated. The classic basis for
+# red wine with red meat. Classic: Cabernet Sauvignon with ribeye steak.
+[rule3_tanninFat:
+    (?w vin:hasTannin vin:HighTannin)
+    (?f food:hasFatness food:HighFat)
+    -> (?w rec:recommendsPairing ?f)
+]
+
+# Rule 4: High tannin + salty food → RECOMMEND
+# Principle (Jancis Robinson / Guild of Sommeliers): Salt suppresses tannin astringency,
+# making tannic wines taste rounder and more balanced.
+# Classic: Manchego (salty) with Rioja (tannic).
+[rule4_tanninSalt:
     (?w vin:hasTannin vin:HighTannin)
     (?f food:hasSaltiness food:HighSaltiness)
     -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 4: Light body matches tender texture — weight of wine mirrors weight of food
-[rule4_lightTender:
+# Rule 5: Sweet wine + sweet food → RECOMMEND
+# Principle (Wine Folly / MacNeil — "the sweetness rule"): The wine must be at least
+# as sweet as the food. A wine that matches or exceeds the dish's sweetness creates harmony.
+# Classic: Sauternes with foie gras, Port with chocolate.
+[rule5_sweetSweet:
+    (?w vin:hasSugar vin:Sweet)
+    (?f food:hasSweetness food:HighSweetness)
+    -> (?w rec:recommendsPairing ?f)
+]
+
+# Rule 6: Off-dry wine + spicy food → RECOMMEND
+# Principle (Kevin Zraly / Guild of Sommeliers): Residual sugar in wine has a cooling
+# effect on spicy heat (capsaicin). The sweetness provides relief without overpowering
+# the dish's complexity.
+# Classic: Off-dry Riesling with Thai or Indian cuisine.
+[rule6_offDrySpicy:
+    (?w vin:hasSugar vin:OffDry)
+    (?f food:hasSpiciness food:HighSpiciness)
+    -> (?w rec:recommendsPairing ?f)
+]
+
+# Rule 7: Sweet wine + spicy food → RECOMMEND
+# Principle (Kevin Zraly / Wine Folly): Sweetness actively cools and soothes capsaicin.
+# Sweet wines provide maximum relief from heat while complementing aromatic spiced dishes.
+# Classic: Gewürztraminer (slightly sweet) with Szechuan cuisine.
+[rule7_sweetSpicy:
+    (?w vin:hasSugar vin:Sweet)
+    (?f food:hasSpiciness food:HighSpiciness)
+    -> (?w rec:recommendsPairing ?f)
+]
+
+# Rule 8: Full-bodied wine + high-fat food → RECOMMEND (weight matching)
+# Principle (Guild of Sommeliers / MacNeil — "match the weight"): The body and weight
+# of a wine should mirror the richness of the food. A full-bodied wine holds its own
+# against rich, fatty dishes without being overwhelmed.
+# Classic: Full-bodied Chardonnay with cream-based pasta, Barolo with braised lamb.
+[rule8_fullBodyFat:
+    (?w vin:hasBody vin:Full)
+    (?f food:hasFatness food:HighFat)
+    -> (?w rec:recommendsPairing ?f)
+]
+
+# Rule 9: Aromatic wine + spiced/aromatic food → RECOMMEND
+# Principle (Wine Folly / MacNeil): Aromatic wines mirror and amplify aromatic compounds
+# in spiced foods, creating harmony through similarity. The wine's bouquet complements
+# the dish's fragrance.
+# Classic: Gewürztraminer with Moroccan tagine, Viognier with herbed dishes.
+[rule9_aromaticSpicy:
+    (?w vin:hasAroma vin:Aromatic)
+    (?f food:hasSpiciness food:HighSpiciness)
+    -> (?w rec:recommendsPairing ?f)
+]
+
+# Rule 10: Light-bodied wine + tender-texture food → RECOMMEND
+# Principle (Guild of Sommeliers / Zraly): A light-bodied wine complements delicate,
+# tender food without overpowering it. Weight matching preserves both the wine's
+# character and the food's subtlety.
+# Classic: Pinot Noir with salmon, Beaujolais with charcuterie.
+[rule10_lightTender:
     (?w vin:hasBody vin:Light)
     (?f food:hasTexture food:TenderTexture)
     -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 5: Low alcohol + off-dry wine balances spicy heat
-[rule5_lowAlcOffDrySpicy:
+# Rule 11: Low alcohol + off-dry + spicy food → RECOMMEND (the Riesling rule)
+# Principle (Zraly / Guild of Sommeliers): Low alcohol avoids amplifying capsaicin heat,
+# while residual sugar soothes it. Together, they make spicy food manageable and enjoyable.
+# This is the consensus sommelier recommendation for Asian and spicy cuisines.
+# Classic: German Spätlese Riesling with Indian curry.
+[rule11_lowAlcOffDrySpicy:
     (?w vin:hasAlcohol vin:LowAlcohol)
     (?w vin:hasSugar vin:OffDry)
     (?f food:hasSpiciness food:HighSpiciness)
     -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 6: Red wine pairs with umami-rich food
-# rdf:type vin:RedWine is materialized by HermiT's InferredClassAssertionAxiomGenerator
-[rule6_redWineUmami:
-    (?w rdf:type vin:RedWine)
-    (?f food:hasUmami food:HighUmami)
-    -> (?w rec:recommendsPairing ?f)
+# ==============================================================
+# NEGATIVE PAIRINGS — rec:notRecommended
+# ==============================================================
+
+# Rule 12: Low acidity + high fat food → AVOID
+# Principle (Kevin Zraly): A wine with low acidity cannot cut through fatty food.
+# Without the cleansing effect of acidity, the pairing feels heavy, greasy, and flat.
+# Classic clash: Sweet Port with a cream-heavy entrée.
+[rule12_lowAcidityFat:
+    (?w vin:hasAcidity vin:LowAcidity)
+    (?f food:hasFatness food:HighFat)
+    -> (?w rec:notRecommended ?f)
 ]
 
-# Rule 7: High tannin + high bitterness — bitter clash, avoid this pairing
-[rule7_tanninBitter:
+# Rule 13: High tannin + high umami food → AVOID
+# Principle (Jancis Robinson / Wine Folly): Umami amplifies tannin perception,
+# making the wine taste harsh, bitter, and metallic. One of the most consistent
+# clashes in wine pairing science.
+# Classic clash: Cabernet Sauvignon with aged Parmesan or soy-glazed dishes.
+[rule13_tanninUmami:
+    (?w vin:hasTannin vin:HighTannin)
+    (?f food:hasUmami food:HighUmami)
+    -> (?w rec:notRecommended ?f)
+]
+
+# Rule 14: High tannin + spicy food → AVOID
+# Principle (Wine Folly / Guild of Sommeliers): Tannin and capsaicin act on the same
+# pain receptors in the mouth. Together they amplify each other, creating an unpleasant
+# burning, astringent sensation.
+# Classic clash: Cabernet Sauvignon with spicy curry.
+[rule14_tanninSpicy:
+    (?w vin:hasTannin vin:HighTannin)
+    (?f food:hasSpiciness food:HighSpiciness)
+    -> (?w rec:notRecommended ?f)
+]
+
+# Rule 15: High alcohol + spicy food → AVOID
+# Principle (MacNeil / Wine Folly): Alcohol enhances the perception of capsaicin heat.
+# A high-alcohol wine makes spicy food taste even more intense and uncomfortable.
+# Classic clash: High-alcohol Zinfandel or Shiraz with spicy food.
+[rule15_alcoholSpicy:
+    (?w vin:hasAlcohol vin:HighAlcohol)
+    (?f food:hasSpiciness food:HighSpiciness)
+    -> (?w rec:notRecommended ?f)
+]
+
+# Rule 16: Dry wine + highly sweet food → AVOID
+# Principle (Wine Folly / MacNeil — "the sweetness rule"): When food is sweeter than
+# the wine, the wine's residual sweetness is overwhelmed. The wine tastes thin, sour,
+# and harsh by comparison. The wine must always be at least as sweet as the food.
+# Classic clash: Dry Chardonnay with chocolate cake.
+[rule16_dryWineSweet:
+    (?w vin:hasSugar vin:Dry)
+    (?f food:hasSweetness food:HighSweetness)
+    -> (?w rec:notRecommended ?f)
+]
+
+# Rule 17: Light-bodied wine + high-fat food → AVOID (weight mismatch)
+# Principle (Kevin Zraly / Wine Folly): A light-bodied wine is overwhelmed and
+# disappears when paired with very rich, fatty, or heavily flavored foods.
+# The food dominates and the wine loses all its character.
+# Classic clash: Beaujolais with a fatty braised pork belly.
+[rule17_lightBodyFat:
+    (?w vin:hasBody vin:Light)
+    (?f food:hasFatness food:HighFat)
+    -> (?w rec:notRecommended ?f)
+]
+
+# Rule 18: High tannin + bitter food → AVOID
+# Principle (Guild of Sommeliers): Bitterness in both wine (tannin) and food reinforces
+# itself, creating an overwhelmingly bitter, unpleasant experience.
+# Classic clash: Tannic red wine with dark bitter chocolate or bitter greens.
+[rule18_tanninBitter:
     (?w vin:hasTannin vin:HighTannin)
     (?f food:hasBitterness food:HighBitterness)
     -> (?w rec:notRecommended ?f)
