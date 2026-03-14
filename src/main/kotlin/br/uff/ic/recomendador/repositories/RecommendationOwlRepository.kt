@@ -14,6 +14,10 @@ import org.apache.jena.query.QueryExecution
 import org.apache.jena.query.QueryFactory
 import org.springframework.stereotype.Repository
 
+private const val WINE_NS = "http://uff.ic.br/ontologias/recomendador/wine/"
+private const val FOOD_NS = "http://uff.ic.br/ontologias/recomendador/food/"
+private const val REC_NS  = "http://uff.ic.br/ontologias/recomendador/recommendation/"
+
 @Repository
 class RecommendationOwlRepository(
     private val recommendationOntologyModel: OntModel
