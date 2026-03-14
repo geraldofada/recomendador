@@ -1,73 +1,62 @@
-@prefix vin: <http://uff.ic.br/ontologias/recomendador/wine/> .
+# Wine-Food Pairing Rules — Jena Rules syntax
+# Executed by Jena's GenericRuleReasoner (FORWARD_RETE) after HermiT OWL inference
+#
+# Class membership checks are omitted intentionally:
+#   - any subject with vin:hasAcidity is a wine individual
+#   - any subject with food:hasFatness is a food individual
+# This avoids dependency on rdf:type materialization.
+
+@prefix vin:  <http://uff.ic.br/ontologias/recomendador/wine/> .
 @prefix food: <http://uff.ic.br/ontologias/recomendador/food/> .
-@prefix rec: <http://uff.ic.br/ontologias/recomendador/recommendation/> .
+@prefix rec:  <http://uff.ic.br/ontologias/recomendador/recommendation/> .
 
-# Rule 1: High acidity wine pairs with high fat food
-# Principle: Acidity cuts through fat, cleansing the palette
-[highAcidityHighFat:
-  (?w rdf:type vin:Wine)
-  (?w vin:hasAcidity vin:HighAcidity)
-  (?f rdf:type food:Dish)
-  (?f food:hasFatness food:HighFat)
-  -> (?w rec:recommendsPairing ?f)
+# Rule 1: High acidity cuts through fat — acidity cleanses a fatty palate
+[rule1_acidityFat:
+    (?w vin:hasAcidity vin:HighAcidity)
+    (?f food:hasFatness food:HighFat)
+    -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 2: Sweet wine pairs with sweet food
-# Principle: Wine should be as sweet as or sweeter than the food
-[sweetWineSweetFood:
-  (?w rdf:type vin:Wine)
-  (?w vin:hasSugar vin:Sweet)
-  (?f rdf:type food:Dish)
-  (?f food:hasSweetness food:HighSweetness)
-  -> (?w rec:recommendsPairing ?f)
+# Rule 2: Sweet wine with sweet food — wine must be at least as sweet as the dish
+[rule2_sweetSweet:
+    (?w vin:hasSugar vin:Sweet)
+    (?f food:hasSweetness food:HighSweetness)
+    -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 3: Tannic wine pairs with salty food
-# Principle: Salt softens tannins, making the wine smoother
-[tannicWineSaltyFood:
-  (?w rdf:type vin:Wine)
-  (?w vin:hasTannin vin:HighTannin)
-  (?f rdf:type food:Dish)
-  (?f food:hasSaltiness food:HighSaltiness)
-  -> (?w rec:recommendsPairing ?f)
+# Rule 3: Tannin softened by salt — salt reduces the astringency of tannins
+[rule3_tanninSalt:
+    (?w vin:hasTannin vin:HighTannin)
+    (?f food:hasSaltiness food:HighSaltiness)
+    -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 4: Light body wine pairs with light texture food
-# Principle: Body of wine should match the weight of the food
-[lightBodyLightTexture:
-  (?w rdf:type vin:Wine)
-  (?w vin:hasBody vin:Light)
-  (?f rdf:type food:Dish)
-  (?f food:hasTexture food:TenderTexture)
-  -> (?w rec:recommendsPairing ?f)
+# Rule 4: Light body matches tender texture — weight of wine mirrors weight of food
+[rule4_lightTender:
+    (?w vin:hasBody vin:Light)
+    (?f food:hasTexture food:TenderTexture)
+    -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 5: Low alcohol wine with slightly sweet pairs with spicy food
-# Principle: Low alcohol and hint of sweetness balance spicy heat
-[lowAlcoholOffDrySpicyFood:
-  (?w rdf:type vin:Wine)
-  (?w vin:hasAlcohol vin:LowAlcohol)
-  (?w vin:hasSugar vin:OffDry)
-  (?f rdf:type food:Dish)
-  (?f food:hasSpiciness food:HighSpiciness)
-  -> (?w rec:recommendsPairing ?f)
+# Rule 5: Low alcohol + off-dry wine balances spicy heat
+[rule5_lowAlcOffDrySpicy:
+    (?w vin:hasAlcohol vin:LowAlcohol)
+    (?w vin:hasSugar vin:OffDry)
+    (?f food:hasSpiciness food:HighSpiciness)
+    -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 6: High umami food pairs with red wine
-# Principle: Umami-rich foods (meats, aged cheeses) go well with red wines
-[redWineHighUmami:
-  (?w rdf:type vin:RedWine)
-  (?f rdf:type food:Dish)
-  (?f food:hasUmami food:HighUmami)
-  -> (?w rec:recommendsPairing ?f)
+# Rule 6: Red wine pairs with umami-rich food
+# rdf:type vin:RedWine is materialized by HermiT's InferredClassAssertionAxiomGenerator
+[rule6_redWineUmami:
+    (?w rdf:type vin:RedWine)
+    (?f food:hasUmami food:HighUmami)
+    -> (?w rec:recommendsPairing ?f)
 ]
 
-# Rule 7: Avoid pairing: High tannin + High bitterness
-# Principle: Bitter + Bitter = Unpleasant
-[highTanninHighBitterness:
-  (?w rdf:type vin:Wine)
-  (?w vin:hasTannin vin:HighTannin)
-  (?f rdf:type food:Dish)
-  (?f food:hasBitterness food:HighBitterness)
-  -> (?w rec:notRecommended ?f)
+# Rule 7: High tannin + high bitterness — bitter clash, avoid this pairing
+[rule7_tanninBitter:
+    (?w vin:hasTannin vin:HighTannin)
+    (?f food:hasBitterness food:HighBitterness)
+    -> (?w rec:notRecommended ?f)
 ]
