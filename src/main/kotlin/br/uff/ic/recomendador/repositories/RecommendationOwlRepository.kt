@@ -88,7 +88,7 @@ class RecommendationOwlRepository(
                          rec:hasConfidence ?confidence .
                     OPTIONAL { ?rec rec:hasExplanation ?explanation }
                 } UNION {
-                    # Inferred recommendations from Jena pairing rules
+                    # Inferred recommendations from SWRL rules (HermiT only)
                     <$wineUri> rec:recommendsPairing ?dish .
                     BIND(0.7 AS ?confidence)
                 }

@@ -47,7 +47,10 @@ class ReasonerConfig {
     private lateinit var recommendationInstancesResource: Resource
 
     @Value("classpath:ontologies/pairing-rules.jena")
-    private lateinit var pairingRulesResource: Resource
+    private lateinit var pairingJenaRules: Resource
+
+    @Value("classpath:ontologies/pairing-rules.swrl")
+    private lateinit var pairingSwrlRules: Resource
 
     @Value("\${reasoner.type:JENA_OWL}")
     private lateinit var reasonerTypeName: String
@@ -94,6 +97,7 @@ class ReasonerConfig {
             foodInstancesResource to "urn:food-instances",
             recommendationSchemaResource to "urn:recommendation-schema",
             recommendationInstancesResource to "urn:recommendation-instances",
+            pairingSwrlRules to "urn:pairing-rules",
         ).forEach { (resource, urn) ->
             resource.inputStream.use { stream ->
                 val source = StreamDocumentSource(stream, IRI.create(urn))
@@ -132,14 +136,11 @@ class ReasonerConfig {
         val jenaModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM)
         jenaModel.read(ByteArrayInputStream(output.toByteArray()), null, "TURTLE")
 
-        // 5. Apply Jena pairing rules on top of HermiT-materialized model
-        applyJenaPairingRules(jenaModel)
-
         return jenaModel
     }
 
     private fun applyJenaPairingRules(model: OntModel) {
-        val rules = pairingRulesResource.inputStream.bufferedReader().use { reader ->
+        val rules = pairingJenaRules.inputStream.bufferedReader().use { reader ->
             Rule.parseRules(Rule.rulesParserFromReader(reader))
         }
 
