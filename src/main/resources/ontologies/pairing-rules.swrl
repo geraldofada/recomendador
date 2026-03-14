@@ -19,6 +19,10 @@
     <owl:versionInfo>1.0.0</owl:versionInfo>
   </owl:Ontology>
 
+  <!-- Variable declarations -->
+  <swrl:Variable rdf:about="urn:swrl:var#w"/>
+  <swrl:Variable rdf:about="urn:swrl:var#f"/>
+
   <!-- ============================================== -->
   <!-- Rule 1: High acidity wine pairs with high fat food -->
   <!-- Principle: Acidity cuts through fat, cleansing the palate -->
@@ -28,34 +32,34 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/Wine"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
           </swrl:ClassAtom>
         </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
             <rdf:first>
               <swrl:IndividualPropertyAtom>
-                <swrl:PropertyPredicate rdf:resource="vin:hasAcidity"/>
-                <swrl:Argument1 rdf:resource="swrl#w"/>
-                <swrl:Argument2 rdf:resource="vin:HighAcidity"/>
+                <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/hasAcidity"/>
+                <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+                <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/HighAcidity"/>
               </swrl:IndividualPropertyAtom>
             </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:ClassAtom>
-                    <swrl:ClassPredicate rdf:resource="food:Dish"/>
-                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                    <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/Dish"/>
+                    <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
                   </swrl:ClassAtom>
                 </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:first>
                       <swrl:IndividualPropertyAtom>
-                        <swrl:PropertyPredicate rdf:resource="food:hasFatness"/>
-                        <swrl:Argument1 rdf:resource="swrl#f"/>
-                        <swrl:Argument2 rdf:resource="food:HighFat"/>
+                        <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/hasFatness"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
+                        <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/food/HighFat"/>
                       </swrl:IndividualPropertyAtom>
                     </rdf:first>
                     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -71,9 +75,9 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:IndividualPropertyAtom>
-            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
-            <swrl:Argument2 rdf:resource="swrl#f"/>
+            <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/recommendation/recommendsPairing"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+            <swrl:argument2 rdf:resource="urn:swrl:var#f"/>
           </swrl:IndividualPropertyAtom>
         </rdf:first>
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -90,34 +94,34 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/Wine"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
           </swrl:ClassAtom>
         </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
             <rdf:first>
               <swrl:IndividualPropertyAtom>
-                <swrl:PropertyPredicate rdf:resource="vin:hasSugar"/>
-                <swrl:Argument1 rdf:resource="swrl#w"/>
-                <swrl:Argument2 rdf:resource="vin:Sweet"/>
+                <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/hasSugar"/>
+                <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+                <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/Sweet"/>
               </swrl:IndividualPropertyAtom>
             </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:ClassAtom>
-                    <swrl:ClassPredicate rdf:resource="food:Dish"/>
-                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                    <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/Dish"/>
+                    <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
                   </swrl:ClassAtom>
                 </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:first>
                       <swrl:IndividualPropertyAtom>
-                        <swrl:PropertyPredicate rdf:resource="food:hasSweetness"/>
-                        <swrl:Argument1 rdf:resource="swrl#f"/>
-                        <swrl:Argument2 rdf:resource="food:HighSweetness"/>
+                        <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/hasSweetness"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
+                        <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/food/HighSweetness"/>
                       </swrl:IndividualPropertyAtom>
                     </rdf:first>
                     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -133,9 +137,9 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:IndividualPropertyAtom>
-            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
-            <swrl:Argument2 rdf:resource="swrl#f"/>
+            <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/recommendation/recommendsPairing"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+            <swrl:argument2 rdf:resource="urn:swrl:var#f"/>
           </swrl:IndividualPropertyAtom>
         </rdf:first>
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -152,34 +156,34 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/Wine"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
           </swrl:ClassAtom>
         </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
             <rdf:first>
               <swrl:IndividualPropertyAtom>
-                <swrl:PropertyPredicate rdf:resource="vin:hasTannin"/>
-                <swrl:Argument1 rdf:resource="swrl#w"/>
-                <swrl:Argument2 rdf:resource="vin:HighTannin"/>
+                <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/hasTannin"/>
+                <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+                <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/HighTannin"/>
               </swrl:IndividualPropertyAtom>
             </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:ClassAtom>
-                    <swrl:ClassPredicate rdf:resource="food:Dish"/>
-                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                    <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/Dish"/>
+                    <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
                   </swrl:ClassAtom>
                 </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:first>
                       <swrl:IndividualPropertyAtom>
-                        <swrl:PropertyPredicate rdf:resource="food:hasSaltiness"/>
-                        <swrl:Argument1 rdf:resource="swrl#f"/>
-                        <swrl:Argument2 rdf:resource="food:HighSaltiness"/>
+                        <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/hasSaltiness"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
+                        <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/food/HighSaltiness"/>
                       </swrl:IndividualPropertyAtom>
                     </rdf:first>
                     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -195,9 +199,9 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:IndividualPropertyAtom>
-            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
-            <swrl:Argument2 rdf:resource="swrl#f"/>
+            <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/recommendation/recommendsPairing"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+            <swrl:argument2 rdf:resource="urn:swrl:var#f"/>
           </swrl:IndividualPropertyAtom>
         </rdf:first>
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -214,34 +218,34 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/Wine"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
           </swrl:ClassAtom>
         </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
             <rdf:first>
               <swrl:IndividualPropertyAtom>
-                <swrl:PropertyPredicate rdf:resource="vin:hasBody"/>
-                <swrl:Argument1 rdf:resource="swrl#w"/>
-                <swrl:Argument2 rdf:resource="vin:Light"/>
+                <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/hasBody"/>
+                <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+                <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/Light"/>
               </swrl:IndividualPropertyAtom>
             </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:ClassAtom>
-                    <swrl:ClassPredicate rdf:resource="food:Dish"/>
-                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                    <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/Dish"/>
+                    <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
                   </swrl:ClassAtom>
                 </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:first>
                       <swrl:IndividualPropertyAtom>
-                        <swrl:PropertyPredicate rdf:resource="food:hasTexture"/>
-                        <swrl:Argument1 rdf:resource="swrl#f"/>
-                        <swrl:Argument2 rdf:resource="food:TenderTexture"/>
+                        <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/hasTexture"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
+                        <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/food/TenderTexture"/>
                       </swrl:IndividualPropertyAtom>
                     </rdf:first>
                     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -257,9 +261,9 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:IndividualPropertyAtom>
-            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
-            <swrl:Argument2 rdf:resource="swrl#f"/>
+            <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/recommendation/recommendsPairing"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+            <swrl:argument2 rdf:resource="urn:swrl:var#f"/>
           </swrl:IndividualPropertyAtom>
         </rdf:first>
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -276,43 +280,43 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/Wine"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
           </swrl:ClassAtom>
         </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
             <rdf:first>
               <swrl:IndividualPropertyAtom>
-                <swrl:PropertyPredicate rdf:resource="vin:hasAlcohol"/>
-                <swrl:Argument1 rdf:resource="swrl#w"/>
-                <swrl:Argument2 rdf:resource="vin:LowAlcohol"/>
+                <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/hasAlcohol"/>
+                <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+                <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/LowAlcohol"/>
               </swrl:IndividualPropertyAtom>
             </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:IndividualPropertyAtom>
-                    <swrl:PropertyPredicate rdf:resource="vin:hasSugar"/>
-                    <swrl:Argument1 rdf:resource="swrl#w"/>
-                    <swrl:Argument2 rdf:resource="vin:OffDry"/>
+                    <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/hasSugar"/>
+                    <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+                    <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/OffDry"/>
                   </swrl:IndividualPropertyAtom>
                 </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:first>
                       <swrl:ClassAtom>
-                        <swrl:ClassPredicate rdf:resource="food:Dish"/>
-                        <swrl:Argument1 rdf:resource="swrl#f"/>
+                        <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/Dish"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
                       </swrl:ClassAtom>
                     </rdf:first>
                     <rdf:rest>
                       <swrl:AtomList>
                         <rdf:first>
                           <swrl:IndividualPropertyAtom>
-                            <swrl:PropertyPredicate rdf:resource="food:hasSpiciness"/>
-                            <swrl:Argument1 rdf:resource="swrl#f"/>
-                            <swrl:Argument2 rdf:resource="food:HighSpiciness"/>
+                            <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/hasSpiciness"/>
+                            <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
+                            <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/food/HighSpiciness"/>
                           </swrl:IndividualPropertyAtom>
                         </rdf:first>
                         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -330,9 +334,9 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:IndividualPropertyAtom>
-            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
-            <swrl:Argument2 rdf:resource="swrl#f"/>
+            <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/recommendation/recommendsPairing"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+            <swrl:argument2 rdf:resource="urn:swrl:var#f"/>
           </swrl:IndividualPropertyAtom>
         </rdf:first>
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -349,25 +353,25 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:ClassPredicate rdf:resource="vin:RedWine"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/RedWine"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
           </swrl:ClassAtom>
         </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
             <rdf:first>
               <swrl:ClassAtom>
-                <swrl:ClassPredicate rdf:resource="food:Dish"/>
-                <swrl:Argument1 rdf:resource="swrl#f"/>
+                <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/Dish"/>
+                <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
               </swrl:ClassAtom>
             </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:IndividualPropertyAtom>
-                    <swrl:PropertyPredicate rdf:resource="food:hasUmami"/>
-                    <swrl:Argument1 rdf:resource="swrl#f"/>
-                    <swrl:Argument2 rdf:resource="food:HighUmami"/>
+                    <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/hasUmami"/>
+                    <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
+                    <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/food/HighUmami"/>
                   </swrl:IndividualPropertyAtom>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -381,9 +385,9 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:IndividualPropertyAtom>
-            <swrl:PropertyPredicate rdf:resource="rec:recommendsPairing"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
-            <swrl:Argument2 rdf:resource="swrl#f"/>
+            <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/recommendation/recommendsPairing"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+            <swrl:argument2 rdf:resource="urn:swrl:var#f"/>
           </swrl:IndividualPropertyAtom>
         </rdf:first>
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -400,34 +404,34 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:ClassPredicate rdf:resource="vin:Wine"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
+            <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/Wine"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
           </swrl:ClassAtom>
         </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
             <rdf:first>
               <swrl:IndividualPropertyAtom>
-                <swrl:PropertyPredicate rdf:resource="vin:hasTannin"/>
-                <swrl:Argument1 rdf:resource="swrl#w"/>
-                <swrl:Argument2 rdf:resource="vin:HighTannin"/>
+                <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/hasTannin"/>
+                <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+                <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/wine/HighTannin"/>
               </swrl:IndividualPropertyAtom>
             </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:ClassAtom>
-                    <swrl:ClassPredicate rdf:resource="food:Dish"/>
-                    <swrl:Argument1 rdf:resource="swrl#f"/>
+                    <swrl:classPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/Dish"/>
+                    <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
                   </swrl:ClassAtom>
                 </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:first>
                       <swrl:IndividualPropertyAtom>
-                        <swrl:PropertyPredicate rdf:resource="food:hasBitterness"/>
-                        <swrl:Argument1 rdf:resource="swrl#f"/>
-                        <swrl:Argument2 rdf:resource="food:HighBitterness"/>
+                        <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/food/hasBitterness"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#f"/>
+                        <swrl:argument2 rdf:resource="http://uff.ic.br/ontologias/recomendador/food/HighBitterness"/>
                       </swrl:IndividualPropertyAtom>
                     </rdf:first>
                     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -443,9 +447,9 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:IndividualPropertyAtom>
-            <swrl:PropertyPredicate rdf:resource="rec:notRecommended"/>
-            <swrl:Argument1 rdf:resource="swrl#w"/>
-            <swrl:Argument2 rdf:resource="swrl#f"/>
+            <swrl:propertyPredicate rdf:resource="http://uff.ic.br/ontologias/recomendador/recommendation/notRecommended"/>
+            <swrl:argument1 rdf:resource="urn:swrl:var#w"/>
+            <swrl:argument2 rdf:resource="urn:swrl:var#f"/>
           </swrl:IndividualPropertyAtom>
         </rdf:first>
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
