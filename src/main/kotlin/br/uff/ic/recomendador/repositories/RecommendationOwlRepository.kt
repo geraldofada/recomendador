@@ -112,23 +112,66 @@ class RecommendationOwlRepository(
     }
 
     override fun getWineSensoryProfile(wineName: Name): WineSensoryProfile? {
-        return WineSensoryProfile(
-            acidity = "Medium",
-            tannin = "Medium",
-            alcohol = "Medium",
-            body = "Medium",
-            sugar = "Dry",
-            aroma = "Neutral"
-        )
+        val wineUri = "$WINE_NS${wineName.value}"
+
+        val query = QueryFactory.create("""
+            PREFIX vin: <$WINE_NS>
+
+            SELECT ?acidity ?tannin ?alcohol ?body ?sugar ?aroma
+            WHERE {
+                <$wineUri> vin:hasAcidity ?acidity .
+                OPTIONAL { <$wineUri> vin:hasTannin  ?tannin }
+                OPTIONAL { <$wineUri> vin:hasAlcohol ?alcohol }
+                OPTIONAL { <$wineUri> vin:hasBody    ?body }
+                OPTIONAL { <$wineUri> vin:hasSugar   ?sugar }
+                OPTIONAL { <$wineUri> vin:hasAroma   ?aroma }
+            }
+            LIMIT 1
+        """.trimIndent())
+
+        return QueryExecution.create(query, recommendationOntologyModel).use { qexec ->
+            val results = qexec.execSelect()
+            if (!results.hasNext()) return@use null
+            val s = results.next()
+            WineSensoryProfile(
+                acidity = s.getResource("acidity")?.localName ?: "Unknown",
+                tannin  = s.getResource("tannin")?.localName  ?: "Unknown",
+                alcohol = s.getResource("alcohol")?.localName ?: "Unknown",
+                body    = s.getResource("body")?.localName    ?: "Unknown",
+                sugar   = s.getResource("sugar")?.localName   ?: "Unknown",
+                aroma   = s.getResource("aroma")?.localName   ?: "Unknown"
+            )
+        }
     }
 
     override fun getFoodSensoryProfile(foodName: Name): FoodSensoryProfile? {
-        return FoodSensoryProfile(
-            fatness = "Medium",
-            saltiness = "Medium",
-            sweetness = "Low",
-            spiciness = "Low",
-            umami = "Medium"
-        )
+        val foodUri = "$FOOD_NS${foodName.value}"
+
+        val query = QueryFactory.create("""
+            PREFIX food: <$FOOD_NS>
+
+            SELECT ?fatness ?saltiness ?sweetness ?spiciness ?umami
+            WHERE {
+                <$foodUri> food:hasFatness ?fatness .
+                OPTIONAL { <$foodUri> food:hasSaltiness ?saltiness }
+                OPTIONAL { <$foodUri> food:hasSweetness ?sweetness }
+                OPTIONAL { <$foodUri> food:hasSpiciness ?spiciness }
+                OPTIONAL { <$foodUri> food:hasUmami     ?umami }
+            }
+            LIMIT 1
+        """.trimIndent())
+
+        return QueryExecution.create(query, recommendationOntologyModel).use { qexec ->
+            val results = qexec.execSelect()
+            if (!results.hasNext()) return@use null
+            val s = results.next()
+            FoodSensoryProfile(
+                fatness   = s.getResource("fatness")?.localName   ?: "Unknown",
+                saltiness = s.getResource("saltiness")?.localName ?: "Unknown",
+                sweetness = s.getResource("sweetness")?.localName ?: "Unknown",
+                spiciness = s.getResource("spiciness")?.localName ?: "Unknown",
+                umami     = s.getResource("umami")?.localName     ?: "Unknown"
+            )
+        }
     }
 }
