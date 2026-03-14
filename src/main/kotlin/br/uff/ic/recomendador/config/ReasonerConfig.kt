@@ -4,7 +4,10 @@ import org.apache.jena.ontology.OntDocumentManager
 import org.apache.jena.ontology.OntModel
 import org.apache.jena.ontology.OntModelSpec
 import org.apache.jena.rdf.model.ModelFactory
+import org.apache.jena.rdf.model.RDFNode
 import org.apache.jena.reasoner.ReasonerRegistry
+import org.apache.jena.reasoner.rulesys.GenericRuleReasoner
+import org.apache.jena.reasoner.rulesys.Rule
 import org.semanticweb.HermiT.ReasonerFactory
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.formats.TurtleDocumentFormat
@@ -43,7 +46,7 @@ class ReasonerConfig {
     @Value("classpath:ontologies/recommendation/recommendation-instances.ttl")
     private lateinit var recommendationInstancesResource: Resource
 
-    @Value("classpath:ontologies/pairing-rules.swrl")
+    @Value("classpath:ontologies/pairing-rules.jena")
     private lateinit var pairingRulesResource: Resource
 
     @Value("\${reasoner.type:JENA_OWL}")
@@ -73,7 +76,10 @@ class ReasonerConfig {
         spec.documentManager = docManager
         spec.reasoner = ReasonerRegistry.getOWLReasoner()
 
-        return ModelFactory.createOntologyModel(spec).also { loadOntologiesIntoJena(it) }
+        return ModelFactory.createOntologyModel(spec).also {
+            loadOntologiesIntoJena(it)
+            applyJenaPairingRules(it)
+        }
     }
 
     private fun buildHermiTModel(): OntModel {
@@ -88,7 +94,6 @@ class ReasonerConfig {
             foodInstancesResource to "urn:food-instances",
             recommendationSchemaResource to "urn:recommendation-schema",
             recommendationInstancesResource to "urn:recommendation-instances",
-            pairingRulesResource to "urn:pairing-rules",
         ).forEach { (resource, urn) ->
             resource.inputStream.use { stream ->
                 val source = StreamDocumentSource(stream, IRI.create(urn))
@@ -126,6 +131,10 @@ class ReasonerConfig {
 
         val jenaModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM)
         jenaModel.read(ByteArrayInputStream(output.toByteArray()), null, "TURTLE")
+
+        // 5. Apply Jena pairing rules on top of HermiT-materialized model
+        applyJenaPairingRules(jenaModel)
+
         return jenaModel
     }
 
