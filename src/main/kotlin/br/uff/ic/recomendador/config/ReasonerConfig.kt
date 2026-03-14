@@ -1,6 +1,5 @@
 package br.uff.ic.recomendador.config
 
-import openllet.jena.PelletReasonerFactory
 import org.apache.jena.ontology.OntDocumentManager
 import org.apache.jena.ontology.OntModel
 import org.apache.jena.ontology.OntModelSpec
@@ -56,7 +55,6 @@ class ReasonerConfig {
         val model = when (type) {
             ReasonerType.JENA_OWL -> buildJenaOwlModel()
             ReasonerType.HERMIT -> buildHermiTModel()
-            ReasonerType.PELLET -> buildPelletModel()
         }
 
         println("=== OntModel ready (${System.currentTimeMillis() - start}ms), size: ${model.size()} triples ===")
@@ -125,18 +123,6 @@ class ReasonerConfig {
         val jenaModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM)
         jenaModel.read(ByteArrayInputStream(output.toByteArray()), null, "TURTLE")
         return jenaModel
-    }
-
-    private fun buildPelletModel(): OntModel {
-        val docManager = OntDocumentManager()
-        docManager.setCacheModels(false)
-        docManager.reset()
-
-        val spec = OntModelSpec(OntModelSpec.OWL_MEM)
-        spec.documentManager = docManager
-        spec.reasoner = PelletReasonerFactory.theInstance().create()
-
-        return ModelFactory.createOntologyModel(spec).also { loadOntologiesIntoJena(it) }
     }
 
     private fun loadOntologiesIntoJena(model: OntModel) {

@@ -33,7 +33,6 @@ dependencies {
 	// Apache Jena for RDF/OWL semantic web support
 	implementation("org.apache.jena:jena-core:5.4.0")
 	implementation("org.apache.jena:jena-arq:5.4.0")
-	implementation("org.apache.jena:jena-ontapi:5.4.0")
 	
 	// OWL API + HermiT Reasoner
 	// Exclude owlapi-distribution:4.1.3 (HermiT's transitive dep) to avoid version conflict
@@ -45,9 +44,6 @@ dependencies {
 	implementation("net.sourceforge.owlapi:owlapi-apibinding:4.5.26")
 	implementation("net.sourceforge.owlapi:owlapi-rio:4.5.26")
 
-	// Openllet (Pellet fork with Jena integration)
-	implementation("com.github.galigator.openllet:openllet-jena:2.6.5")
-	
 	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter-test")
