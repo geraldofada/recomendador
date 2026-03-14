@@ -6,7 +6,7 @@ import br.uff.ic.recomendador.domain.models.Name
 import br.uff.ic.recomendador.domain.models.WinePairing
 import br.uff.ic.recomendador.domain.models.WineSensoryProfile
 import br.uff.ic.recomendador.domain.repositories.RecommendationRepository
-import br.uff.ic.recomendador.main.codegen.types.Colour
+import br.uff.ic.recomendador.domain.utils.WineColourMapper
 import br.uff.ic.recomendador.main.codegen.types.Food
 import br.uff.ic.recomendador.main.codegen.types.Wine
 import org.apache.jena.ontology.OntModel
@@ -19,116 +19,96 @@ class RecommendationOwlRepository(
     private val recommendationOntologyModel: OntModel
 ) : RecommendationRepository {
 
-    init {
-        println("=== RecommendationOwlRepository initialized ===")
-        println("Model size: ${recommendationOntologyModel.size()}")
-        
-        // Debug: List some statements
-        val stmtIter = recommendationOntologyModel.listStatements()
-        println("Sample statements:")
-        var count = 0
-        while (stmtIter.hasNext() && count < 5) {
-            val stmt = stmtIter.next()
-            println("  ${stmt.subject} ${stmt.predicate} ${stmt.`object`}")
-            count++
-        }
-    }
-
     override fun recommendWinesForDish(dishName: Name): List<WinePairing> {
-        val pairings = mutableListOf<WinePairing>()
+        val dishUri = "$FOOD_NS${dishName.value}"
 
-        println("Recommending wines for dish: ${dishName.value}")
-        println("Model size in recommendWinesForDish: ${recommendationOntologyModel.size()}")
-
-        val query = QueryFactory.create(
-            """
-            PREFIX vin: <http://uff.ic.br/ontologias/recomendador/wine/>
-            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        val query = QueryFactory.create("""
+            PREFIX rec:  <$REC_NS>
+            PREFIX vin:  <$WINE_NS>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-            
-            SELECT ?wine ?label
-            WHERE {
-                ?wine rdf:type ?type .
-                ?wine rdfs:label ?label .
-            }
-            LIMIT 10
-            """.trimIndent()
-        )
 
-        QueryExecution.create(query, recommendationOntologyModel).use { qexec ->
-            val results = qexec.execSelect()
-            var rank = 1
-            println("Executing query...")
-            while (results.hasNext()) {
-                val solution = results.next()
-                println("Found result: ${solution.getResource("wine")}")
-                val wineUri = solution.getResource("wine")?.uri ?: continue
-                val wineLabel = solution.getLiteral("label")?.string ?: continue
+            SELECT DISTINCT ?wine ?wineLabel ?confidence ?explanation ?color
+            WHERE {
+                {
+                    # Explicit curated recommendations
+                    ?rec a rec:Recommendation ;
+                         rec:forDish <$dishUri> ;
+                         rec:recommendsWine ?wine ;
+                         rec:hasConfidence ?confidence .
+                    OPTIONAL { ?rec rec:hasExplanation ?explanation }
+                } UNION {
+                    # Inferred recommendations from SWRL rules (HermiT only)
+                    ?wine rec:recommendsPairing <$dishUri> .
+                    BIND(0.7 AS ?confidence)
+                }
+                ?wine rdfs:label ?wineLabel .
+                OPTIONAL { ?wine vin:hasColor ?color }
+                FILTER(lang(?wineLabel) = "" || lang(?wineLabel) = "en")
+            }
+            ORDER BY DESC(?confidence)
+        """.trimIndent())
+
+        return QueryExecution.create(query, recommendationOntologyModel).use { qexec ->
+            qexec.execSelect().asSequence().mapNotNull { solution ->
+                val wineUri    = solution.getResource("wine")?.uri ?: return@mapNotNull null
+                val wineLabel  = solution.getLiteral("wineLabel")?.string ?: return@mapNotNull null
+                val confidence = solution.getLiteral("confidence")?.float ?: 0.5f
+                val explanation = solution.getLiteral("explanation")?.string
+                val colorUri   = solution.getResource("color")?.uri
 
                 val wine = Wine(
                     id = wineUri.substringAfterLast("/"),
                     name = Name(wineLabel),
-                    colour = Colour.WHITE,
+                    colour = WineColourMapper.fromColorUri(colorUri),
                     flavors = emptyList()
                 )
-                pairings.add(
-                    WinePairing(
-                        wine = wine,
-                        score = (30 - rank + 1).toFloat() / 30f,
-                        explanation = "Wine recommendation"
-                    )
-                )
-                rank++
-            }
-            println("Found ${pairings.size} wines")
+                WinePairing(wine = wine, score = confidence, explanation = explanation)
+            }.toList()
         }
-
-        return pairings
     }
 
     override fun recommendDishesForWine(wineName: Name): List<FoodPairing> {
-        val pairings = mutableListOf<FoodPairing>()
+        val wineUri = "$WINE_NS${wineName.value}"
 
-        val query = QueryFactory.create(
-            """
-            PREFIX food: <http://uff.ic.br/ontologias/recomendador/food/>
-            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        val query = QueryFactory.create("""
+            PREFIX rec:  <$REC_NS>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-            
-            SELECT ?dish ?label
-            WHERE {
-                ?dish rdf:type food:Dish .
-                ?dish rdfs:label ?label .
-            }
-            LIMIT 20
-            """.trimIndent()
-        )
 
-        QueryExecution.create(query, recommendationOntologyModel).use { qexec ->
-            val results = qexec.execSelect()
-            var rank = 1
-            while (results.hasNext()) {
-                val solution = results.next()
-                val dishUri = solution.getResource("dish")?.uri ?: continue
-                val dishLabel = solution.getLiteral("label")?.string ?: continue
+            SELECT DISTINCT ?dish ?dishLabel ?confidence ?explanation
+            WHERE {
+                {
+                    # Explicit curated recommendations
+                    ?rec a rec:Recommendation ;
+                         rec:recommendsWine <$wineUri> ;
+                         rec:forDish ?dish ;
+                         rec:hasConfidence ?confidence .
+                    OPTIONAL { ?rec rec:hasExplanation ?explanation }
+                } UNION {
+                    # Inferred recommendations from SWRL rules (HermiT only)
+                    <$wineUri> rec:recommendsPairing ?dish .
+                    BIND(0.7 AS ?confidence)
+                }
+                ?dish rdfs:label ?dishLabel .
+                FILTER(lang(?dishLabel) = "" || lang(?dishLabel) = "en")
+            }
+            ORDER BY DESC(?confidence)
+        """.trimIndent())
+
+        return QueryExecution.create(query, recommendationOntologyModel).use { qexec ->
+            qexec.execSelect().asSequence().mapNotNull { solution ->
+                val dishUri    = solution.getResource("dish")?.uri ?: return@mapNotNull null
+                val dishLabel  = solution.getLiteral("dishLabel")?.string ?: return@mapNotNull null
+                val confidence = solution.getLiteral("confidence")?.float ?: 0.5f
+                val explanation = solution.getLiteral("explanation")?.string
 
                 val food = Food(
                     id = dishUri.substringAfterLast("/"),
                     name = Name(dishLabel),
                     flavors = emptyList()
                 )
-                pairings.add(
-                    FoodPairing(
-                        food = food,
-                        score = (20 - rank + 1).toFloat() / 20f,
-                        explanation = "Food recommendation"
-                    )
-                )
-                rank++
-            }
+                FoodPairing(food = food, score = confidence, explanation = explanation)
+            }.toList()
         }
-
-        return pairings
     }
 
     override fun getWineSensoryProfile(wineName: Name): WineSensoryProfile? {
